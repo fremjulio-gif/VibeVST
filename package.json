@@ -10,9 +10,6 @@
   "dependencies": {
     "serve": "^14.2.4"
   },
-  "devDependencies": {
-    "@vercel/node": "^3.2.33"
-  },
   "engines": {
     "node": ">=18.0.0"
   },
