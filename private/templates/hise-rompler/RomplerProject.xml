@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<HISE_Project Version="3.5.0" Name="AudioForgeRompler" Company="AudioForge Lab">
+  <Engine SampleRate="44100" BufferSize="512" Polyphony="64" VoiceStealing="1">
+    <GlobalModulators>
+      <LFO Name="PitchLFO" Frequency="5.2" Waveform="Sine" Depth="0.0"/>
+    </GlobalModulators>
+  </Engine>
+  
+  <ModuleTree>
+    <Container Name="MasterContainer" Gain="0.0" Balance="0.0">
+      <Sampler Name="MainSampler" SampleMap="AudioForge_SampleMap" CrossfadeMode="EqualPower" VoiceAmount="64">
+        <Modulators>
+          <!-- Enveloppe d'amplitude polyphonique principale -->
+          <AHDSR Name="AmpEnvelope" 
+                 Attack="5.0" 
+                 Hold="0.0" 
+                 Decay="350.0" 
+                 Sustain="-6.0" 
+                 Release="800.0" 
+                 AttackCurve="0.5" 
+                 Retrigger="0"/>
+        </Modulators>
+        
+        <!-- Chaîne d'effets par voix -->
+        <PolyphonicEffects>
+          <Filter Name="PolyFilter" Type="StateVariableLowPass" Frequency="18000.0" Resonance="0.707"/>
+        </PolyphonicEffects>
+      </Sampler>
+      
+      <!-- Effets maîtres stéréophoniques -->
+      <MasterEffects>
+        <Reverb Name="StudioReverb" RoomSize="0.65" Damping="0.4" WetLevel="0.25" DryLevel="1.0"/>
+        <Limiter Name="MasterBrickwall" Threshold="-0.3" Release="50.0"/>
+      </MasterEffects>
+    </Container>
+  </ModuleTree>
+</HISE_Project>

@@ -1,0 +1,20 @@
+{
+  "name": "vibevst-audioforge-lab",
+  "version": "1.2.0",
+  "description": "Plateforme LMS et micro-formations VST pour beatmakers et créateurs audio",
+  "scripts": {
+    "start": "serve public -p 8080",
+    "dev": "serve public -p 8080",
+    "test:webhook": "node -e \"console.log('Test Webhook Signature OK');\""
+  },
+  "dependencies": {
+    "serve": "^14.2.4"
+  },
+  "devDependencies": {
+    "@vercel/node": "^3.2.33"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "private": true
+}

@@ -1,0 +1,339 @@
+/* =========================================================
+   AUDIOFORGE LAB // STUDIO THEME (APPLE LIQUID GLASS × DAW)
+   Design System : Minimalist macOS/visionOS Glass & Teenage Eng. / Ableton 12
+   ========================================================= */
+
+:root {
+  /* Fond principal OLED profond */
+  --bg: #090A0C;
+  --bg-surface: rgba(18, 20, 24, 0.65);
+  --bg-surface-elevated: rgba(24, 28, 35, 0.75);
+  --bg-surface-subtle: rgba(18, 20, 24, 0.4);
+
+  /* Bordures Hairline & Lumière spéculaire */
+  --border-hairline: rgba(255, 255, 255, 0.08);
+  --border-hairline-specular: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+  --border-hairline-hover: rgba(255, 255, 255, 0.16);
+  --border-hairline-light: rgba(255, 255, 255, 0.22);
+
+  /* Accents fonctionnels discrets & précis */
+  --accent-led: #22c55e;        /* Vert LED studio (connecté / validation) */
+  --accent-amber: #f59e0b;      /* Ambre analogique chaud (niveaux / saturation) */
+  --accent-cyan: #38bdf8;       /* Cyan chirurgical (courbes / curseurs audio) */
+  --accent-red: #f43f5e;        /* Rouge crête / avertissement */
+
+  /* Palette de texte haute lisibilité */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+
+  /* Ombres réalistes & diffuses (anti-slop) */
+  --shadow-liquid: 0 30px 60px -12px rgba(0, 0, 0, 0.56);
+  --shadow-glass-elevated: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================================================
+   RESET & TYPOGRAPHIE
+   ========================================================= */
+body {
+  background-color: var(--bg);
+  color: var(--text-secondary);
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "Geist Sans", system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  font-weight: 600;
+}
+
+/* Typographie technique (valeurs DSP, décibels, timecodes, prix) */
+.font-mono, 
+code, 
+pre, 
+.technical-data {
+  font-family: "Geist Mono", "JetBrains Mono", "SF Mono", Menlo, Monaco, Consolas, monospace;
+  font-feature-settings: "tnum" 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* =========================================================
+   COMPOSANTS LIQUID GLASS & HARDWARE SURFACES
+   ========================================================= */
+
+/* Panneaux Liquid Glass standards */
+.glass-panel {
+  background: var(--bg-surface);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--border-hairline-specular), var(--shadow-liquid);
+  border-radius: 16px;
+}
+
+/* Pilule de verre flottante (Navigation / Badges) */
+.glass-pill {
+  background: rgba(18, 20, 24, 0.78);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--border-hairline-specular), var(--shadow-glass-elevated);
+  border-radius: 9999px;
+}
+
+/* Carte Hairline minimale (modules, témoignages, cours) */
+.hairline-card {
+  background: var(--bg-surface-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--border-hairline-specular);
+  border-radius: 14px;
+  transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hairline-card:hover {
+  border-color: var(--border-hairline-hover);
+  background: rgba(22, 26, 32, 0.55);
+}
+
+/* Rétro-compatibilité pour les classes existantes avec modernisation immédiate */
+.rack-panel {
+  background: var(--bg-surface);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--border-hairline-specular), var(--shadow-liquid);
+  border-radius: 16px;
+}
+
+.rack-card {
+  background: var(--bg-surface-subtle);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--border-hairline-specular);
+  border-radius: 12px;
+}
+
+/* Fond épuré OLED sans dégradés criards */
+.chassis-bg {
+  background-color: var(--bg);
+  background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 32px 32px;
+}
+
+/* Boutons verre & spéculaires */
+.glass-button-primary {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.25), 0 8px 20px -4px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-button-primary:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.35), 0 10px 24px -4px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+.glass-button-primary:active {
+  transform: translateY(0);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.glass-button-secondary {
+  background: rgba(18, 20, 24, 0.6);
+  border: 1px solid var(--border-hairline);
+  box-shadow: var(--border-hairline-specular);
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.glass-button-secondary:hover {
+  background: rgba(26, 30, 38, 0.7);
+  border-color: var(--border-hairline-hover);
+  color: #ffffff;
+}
+
+/* =========================================================
+   CONTRÔLES HARDWARE DAW (FADERS & POTENTIOMÈTRES VECTORIELS)
+   ========================================================= */
+
+/* Potentiomètres rotatifs vectoriels minimalistes (Teenage Engineering / Ableton 12) */
+.metal-knob {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1e222a 0%, #111318 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.15), 0 8px 16px -2px rgba(0, 0, 0, 0.5);
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  touch-action: none;
+  transition: border-color 0.2s ease, transform 0.1s ease;
+}
+
+.metal-knob:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.metal-knob:active {
+  transform: scale(0.97);
+}
+
+/* Remplacement sobre des anciennes vis de rack 3D par un rivet discret */
+.rack-screw, .screw {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #20242c;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.6);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.rack-screw::after, .screw::after {
+  display: none !important;
+}
+
+/* Faders audio de précision : ligne ultra-fine de 2px */
+input[type=range].audio-slider,
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 1px;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+input[type=range].audio-slider:hover,
+input[type=range]:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+input[type=range]::-webkit-slider-thumb,
+input[type=range].audio-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.15s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover,
+input[type=range].audio-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+input[type=range].slider-amber::-webkit-slider-thumb {
+  background: var(--accent-amber);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+input[type=range].slider-cyan::-webkit-slider-thumb {
+  background: var(--accent-cyan);
+  border-color: rgba(56, 189, 248, 0.4);
+}
+
+/* =========================================================
+   ÉCRAN OSCILLOSCOPE & GRILLE MILLIMÉTRÉE DE PRÉCISION
+   ========================================================= */
+.crt-grid,
+.scope-screen {
+  background-color: #050608;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Voyants LED Studio discrets */
+.led-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.led-green {
+  background-color: var(--accent-led);
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+}
+
+.led-amber {
+  background-color: var(--accent-amber);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+}
+
+.led-cyan {
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
+}
+
+/* VU-mètre studio épuré */
+.vu-meter-bar {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1.5px;
+  width: 6px;
+  height: 80px;
+  background: #060709;
+  padding: 1.5px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.vu-segment {
+  width: 100%;
+  height: 3px;
+  border-radius: 0.5px;
+  background: rgba(255, 255, 255, 0.06);
+  transition: background-color 0.05s ease;
+}
+
+.vu-segment.active-green { background: var(--accent-led); }
+.vu-segment.active-amber { background: var(--accent-amber); }
+.vu-segment.active-red { background: var(--accent-red); }
+
+/* =========================================================
+   SCROLLBARS MINIMALISTES
+   ========================================================= */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.22);
+}

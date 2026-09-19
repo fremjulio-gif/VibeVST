@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AudioForge // Dashboard Apprenant LMS & Sandbox DSP</title>
+  <meta name="description" content="Espace apprenant AudioForge Lab : cours interactifs, téléchargement des boilerplates C++ / JUCE / HISE et bac à sable de Vibe Coding DSP.">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            daw: {
+              950: '#090A0C',
+              900: '#0d0f14',
+              850: '#12151c',
+              800: '#181c24',
+              700: '#222733',
+              600: '#2d3342',
+              500: '#434b5e',
+              border: 'rgba(255, 255, 255, 0.08)',
+            },
+            accent: {
+              led: '#22c55e',
+              amber: '#f59e0b',
+              cyan: '#38bdf8',
+              red: '#f43f5e'
+            }
+          },
+          fontFamily: {
+            mono: ['"Geist Mono"', '"JetBrains Mono"', '"SF Mono"', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"Inter"', '"Geist Sans"', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Feuilles de style personnalisées Studio & Sandbox -->
+  <link rel="stylesheet" href="/css/studio-theme.css">
+  <link rel="stylesheet" href="/css/sandbox.css">
+</head>
+<body class="bg-[#090A0C] text-slate-300 antialiased font-sans selection:bg-[#38bdf8]/30 selection:text-white min-h-screen flex flex-col">
+
+  <!-- ========================================================= -->
+  <!-- BARRE DE STATUT SUPÉRIEURE (DAW LIQUID GLASS HEADER) -->
+  <!-- ========================================================= -->
+  <header class="sticky top-0 z-50 border-b border-white/5 bg-[#090A0C]/80 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Statut DAW -->
+      <div class="flex items-center space-x-4">
+        <a href="/index.html" class="flex items-center space-x-2.5 group">
+          <div class="w-7 h-7 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-slate-200 group-hover:border-white/30 transition">
+            <svg class="w-3.5 h-3.5 text-[#38bdf8]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <div>
+            <span class="font-mono font-medium tracking-tight text-xs sm:text-sm text-white flex items-center gap-1.5">
+              AUDIOFORGE<span class="text-[10px] px-1.5 py-0.2 rounded bg-white/10 text-slate-300 border border-white/10">LMS</span>
+            </span>
+          </div>
+        </a>
+
+        <div class="hidden md:flex items-center space-x-2 pl-4 border-l border-white/10 font-mono text-[11px] text-slate-400">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+          <span>SESSION ACTIVE</span>
+          <span class="text-slate-600">&bull;</span>
+          <span class="text-slate-300 font-medium" id="user-tier-badge">ACCÈS INTÉGRAL</span>
+        </div>
+      </div>
+
+      <!-- Sélecteur de Parcours (Tabs) -->
+      <div id="course-tabs-container" class="hidden lg:flex items-center space-x-2"></div>
+
+      <!-- Profil Apprenant & Déconnexion -->
+      <div class="flex items-center space-x-3">
+        <div class="text-right hidden sm:block">
+          <div class="text-xs font-mono font-medium text-white" id="user-display-name">Alex Beatmaker</div>
+          <div class="text-[10px] font-mono text-slate-500" id="user-display-email">alex@studio.io</div>
+        </div>
+        <button onclick="AuthGate.logout()" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white font-mono text-xs transition">
+          Déconnexion
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- CORPS PRINCIPAL DU DASHBOARD LMS (AÉRATION & GRILLE DAW) -->
+  <!-- ========================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+    
+    <!-- ========================================================= -->
+    <!-- COLONNE GAUCHE : ARBORESCENCE DU COURS & PROGRESSION -->
+    <!-- ========================================================= -->
+    <aside class="lg:col-span-4 flex flex-col space-y-5">
+      
+      <!-- Carte de progression -->
+      <div class="hairline-card p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="font-mono text-xs text-white font-medium flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+            PROGRESSION DU MODULE
+          </span>
+          <span class="font-mono text-[11px] text-slate-400" id="course-progress-text">0% complété</span>
+        </div>
+        
+        <!-- Barre de progression ultra-fine 2px -->
+        <div class="w-full bg-white/5 rounded-full h-1.5 overflow-hidden">
+          <div id="course-progress-bar" class="bg-[#38bdf8] h-full w-0 transition-all duration-300"></div>
+        </div>
+      </div>
+
+      <!-- Liste des modules / leçons -->
+      <div class="hairline-card p-5 flex-1 flex flex-col">
+        <div class="flex items-center justify-between pb-3 mb-3 border-b border-white/5">
+          <span class="font-mono text-xs text-white font-medium flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span>
+            PROGRAMME DES LEÇONS
+          </span>
+          <span class="text-[10px] font-mono text-slate-500">5 à 15 MIN / LEÇON</span>
+        </div>
+
+        <div id="lessons-list" class="space-y-2 flex-1 overflow-y-auto max-h-[580px] pr-1"></div>
+      </div>
+
+      <!-- Bloc Raccourci Téléchargement rapide -->
+      <div class="hairline-card p-5">
+        <div class="flex items-center justify-between mb-3">
+          <span class="font-mono text-xs text-white font-medium flex items-center gap-1.5">
+            BOILERPLATES RAPIDES
+          </span>
+          <span class="text-[10px] font-mono text-[#38bdf8]">PRÊTS À COMPILER</span>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="downloadBoilerplate('juce')" class="py-2.5 px-3 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 font-mono text-[11px] font-medium transition flex items-center justify-center gap-1.5">
+            <span>&darr;</span> JUCE C++20
+          </button>
+          <button onclick="downloadBoilerplate('hise')" class="py-2.5 px-3 rounded-lg bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 font-mono text-[11px] font-medium transition flex items-center justify-center gap-1.5">
+            <span>&darr;</span> HISE XML
+          </button>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- ========================================================= -->
+    <!-- COLONNE DROITE : LECTEUR VIDÉO, NOTES DE COURS & SANDBOX -->
+    <!-- ========================================================= -->
+    <section class="lg:col-span-8 flex flex-col space-y-8">
+      
+      <!-- 1. LECTEUR VIDÉO / AUDIO INTERACTIF (DAW STYLE) -->
+      <div class="glass-panel p-5 sm:p-7 relative">
+        <!-- En-tête du lecteur -->
+        <div class="flex flex-wrap items-center justify-between pb-3 mb-4 border-b border-white/10 gap-2">
+          <div>
+            <span id="lesson-header-badge" class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-white/5 text-[#38bdf8] border border-white/10">
+              JUCE & C++20 &bull; 20 min
+            </span>
+            <h2 id="lesson-header-title" class="text-base font-medium text-white font-mono mt-1.5">
+              2.1 Fondamentaux temps réel stricts en C++ audio
+            </h2>
+          </div>
+
+          <!-- Timecode DAW -->
+          <div class="flex items-center space-x-2 bg-black/40 px-3 py-1.5 rounded-full border border-white/10 font-mono text-xs">
+            <span class="text-slate-500">SMPTE:</span>
+            <span id="player-timecode" class="text-[#38bdf8] font-medium">00:00:00:00</span>
+          </div>
+        </div>
+
+        <!-- Écran Vidéo / Waveform Player -->
+        <div class="relative bg-[#050608] rounded-xl border border-white/10 h-64 sm:h-80 flex flex-col justify-between p-4 overflow-hidden crt-grid">
+          
+          <!-- Incrustation statut -->
+          <div class="flex justify-between items-center z-10">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#f43f5e]"></span>
+              <span class="text-[10px] font-mono text-slate-400">STUDIO MASTER HD &bull; 1080p 60FPS</span>
+            </div>
+            <span class="text-[10px] font-mono text-[#f59e0b]">AUDIOFORGE LAB RECORDER</span>
+          </div>
+
+          <!-- Simulation graphique centrale du cours -->
+          <div class="flex flex-col items-center justify-center my-auto z-10 text-center">
+            <div class="w-14 h-14 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-white mb-3">
+              <svg class="w-6 h-6 text-slate-200" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <p class="text-xs font-mono text-slate-400 max-w-md">
+              Session vidéo interactive synchronisée avec le code source et le banc d'essai DSP.
+            </p>
+          </div>
+
+          <!-- Barre de contrôle de lecture -->
+          <div class="z-10 bg-[#090A0C]/90 backdrop-blur-md p-2.5 rounded-xl border border-white/10 flex items-center gap-3">
+            <button id="player-play-btn" class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xs font-medium transition">
+              <span id="player-play-icon">&#9658;</span>
+            </button>
+
+            <!-- Curseur de défilement fin 2px -->
+            <input type="range" id="player-scrub" min="0" max="100" value="0" class="flex-1 audio-slider">
+
+            <span class="text-[11px] font-mono text-slate-500 whitespace-nowrap">1.0x</span>
+          </div>
+
+        </div>
+
+        <!-- Notes de cours Markdown rendues -->
+        <div class="mt-5 pt-4 border-t border-white/5">
+          <div class="flex items-center justify-between mb-3">
+            <span class="font-mono text-xs text-white font-medium flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
+              NOTES & CODE DE LA LEÇON
+            </span>
+            <span class="text-[10px] font-mono text-slate-500">FORMAT MARKDOWN</span>
+          </div>
+
+          <div id="lesson-markdown-body" class="bg-[#050608] p-4 sm:p-5 rounded-xl border border-white/5 text-xs leading-relaxed max-h-96 overflow-y-auto font-mono text-slate-400"></div>
+        </div>
+
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- 2. AI VIBE CODING SANDBOX (CONSOLE DE MIXAGE DSP) -->
+      <!-- ========================================================= -->
+      <div id="sandbox-section" class="sandbox-container p-6 sm:p-7 relative">
+        
+        <div class="flex flex-wrap items-center justify-between pb-4 mb-5 border-b border-white/10 gap-2">
+          <div class="flex items-center gap-2.5">
+            <span class="w-2 h-2 rounded-full bg-[#38bdf8]"></span>
+            <span class="font-mono text-sm font-semibold text-white tracking-wider">AI VIBE CODING SANDBOX // DSP SIMULATOR</span>
+          </div>
+          <div class="formula-badge" id="algo-formula-text">y = tanh(gain * x)</div>
+        </div>
+
+        <!-- Sélecteur d'algorithmes -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          <button data-algo="tanh" class="algo-btn px-3 py-1.5 rounded-full text-xs font-mono bg-white/15 text-white font-medium border border-white/20 transition">
+            Soft Tanh
+          </button>
+          <button data-algo="asymmetric" class="algo-btn px-3 py-1.5 rounded-full text-xs font-mono text-slate-400 bg-white/5 hover:text-white border border-white/10 transition">
+            Diode Asymétrique
+          </button>
+          <button data-algo="hardclip" class="algo-btn px-3 py-1.5 rounded-full text-xs font-mono text-slate-400 bg-white/5 hover:text-white border border-white/10 transition">
+            Hard Clipper
+          </button>
+          <button data-algo="wavefolder" class="algo-btn px-3 py-1.5 rounded-full text-xs font-mono text-slate-400 bg-white/5 hover:text-white border border-white/10 transition">
+            Wavefolder
+          </button>
+        </div>
+
+        <p id="algo-desc-text" class="text-xs text-slate-400 font-mono mb-5">
+          Écrêtage doux analogique symétrique. Harmoniques impaires chaudes.
+        </p>
+
+        <!-- Grille des Canvases (Courbe de transfert + Forme d'onde) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          
+          <!-- Canvas 1 : Fonction de transfert x -> y -->
+          <div class="canvas-wrapper p-3.5">
+            <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 mb-2 border-b border-white/5 pb-1.5">
+              <span>COURBE DE TRANSFERT f(x)</span>
+              <span class="text-[#38bdf8]">x &in; [-2.0, +2.0]</span>
+            </div>
+            <div class="relative h-44 w-full">
+              <canvas id="sandbox-curve-canvas" class="w-full h-full block"></canvas>
+            </div>
+          </div>
+
+          <!-- Canvas 2 : Forme d'onde temporelle comparée -->
+          <div class="canvas-wrapper p-3.5">
+            <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 mb-2 border-b border-white/5 pb-1.5">
+              <span>RÉPONSE HARMONIQUE (IN vs OUT)</span>
+              <span class="text-[#f59e0b]">SIGNAL SATURÉ</span>
+            </div>
+            <div class="relative h-44 w-full">
+              <canvas id="sandbox-wave-canvas" class="w-full h-full block"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Paramètres DSP interactifs (Faders 2px) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 p-5 rounded-xl bg-[#050608] border border-white/10 mb-6 font-mono text-xs">
+          
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-[#38bdf8] font-medium">DRIVE (IN):</span>
+              <span id="sb-drive-val" class="text-slate-300">+6.0 dB</span>
+            </div>
+            <input type="range" id="sb-drive-slider" min="0" max="24" step="0.5" value="6" class="w-full audio-slider slider-cyan">
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-[#f59e0b] font-medium">CEILING:</span>
+              <span id="sb-ceil-val" class="text-slate-300">-0.5 dBFS</span>
+            </div>
+            <input type="range" id="sb-ceil-slider" min="-24" max="0" step="0.1" value="-0.5" class="w-full audio-slider slider-amber">
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-slate-400">DC BIAS:</span>
+              <span id="sb-bias-val" class="text-slate-300">0.00</span>
+            </div>
+            <input type="range" id="sb-bias-slider" min="-0.5" max="0.5" step="0.05" value="0" class="w-full audio-slider">
+          </div>
+
+          <div>
+            <div class="flex justify-between mb-1.5">
+              <span class="text-slate-400">ASYMÉTRIE:</span>
+              <span id="sb-asym-val" class="text-slate-300">0.30</span>
+            </div>
+            <input type="range" id="sb-asym-slider" min="0" max="1" step="0.05" value="0.3" class="w-full audio-slider">
+          </div>
+
+        </div>
+
+        <!-- Sortie Code C++ générée à la volée -->
+        <div>
+          <div class="flex items-center justify-between mb-2.5">
+            <span class="font-mono text-xs text-white font-medium flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+              CODE C++20 (PROCESSBLOCK)
+            </span>
+            <button id="sb-copy-btn" onclick="SandboxDSP.copyCurrentCode()" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/15 text-slate-200 border border-white/10 font-mono text-xs transition flex items-center gap-1.5">
+              <span>&#128203;</span>
+              <span>Copier le code C++</span>
+            </button>
+          </div>
+          <pre class="code-terminal p-4 rounded-xl"><code id="sb-code-output"></code></pre>
+        </div>
+
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- 3. DICTIONNAIRE D'INVITES IA (PROMPT PACK CALIBRÉ) -->
+      <!-- ========================================================= -->
+      <div class="hairline-card p-6 sm:p-7">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+          <div>
+            <span class="text-xs font-mono text-[#38bdf8] font-medium uppercase tracking-wider">PACK PROMPTS VIBE CODING</span>
+            <h3 class="text-base font-semibold text-white font-mono mt-0.5">5 Invites Système Calibrées pour LLM</h3>
+          </div>
+          <span class="text-[10px] font-mono text-slate-500">CLAUDE 3.5 &bull; GPT-4O &bull; GEMINI</span>
+        </div>
+
+        <div id="prompts-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- 4. ESPACE RESSOURCES & TÉLÉCHARGEMENTS COMPLETS -->
+      <!-- ========================================================= -->
+      <div class="hairline-card p-6 sm:p-7">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/10">
+          <div>
+            <span class="text-xs font-mono text-[#f59e0b] font-medium uppercase tracking-wider">CENTRE DE RESSOURCES</span>
+            <h3 class="text-base font-semibold text-white font-mono mt-0.5">Boilerplates, Templates & Outils Commerciaux</h3>
+          </div>
+          <span class="text-[10px] font-mono text-[#22c55e]">ACCÈS ILLIMITÉ</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          
+          <div class="p-4 sm:p-5 rounded-xl bg-[#050608] border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-xs font-mono font-medium text-[#38bdf8]">JUCE 8 / C++20 CLIPPER</span>
+                <span class="text-[10px] font-mono text-slate-500">ARCHIVE .ZIP</span>
+              </div>
+              <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                Projet complet CMakeLists.txt, PluginProcessor, PluginEditor, shaders vectoriels et algorithme tanh optimisé.
+              </p>
+            </div>
+            <button onclick="downloadBoilerplate('juce')" class="w-full py-2.5 px-3 rounded-full bg-white/5 hover:bg-white/15 text-slate-200 border border-white/10 font-mono text-xs transition flex items-center justify-center gap-2">
+              <span>&darr;</span> Télécharger le Projet JUCE (C++)
+            </button>
+          </div>
+
+          <div class="p-4 sm:p-5 rounded-xl bg-[#050608] border border-white/10 flex flex-col justify-between">
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-xs font-mono font-medium text-[#f59e0b]">HISE / RNBO ROMPLER</span>
+                <span class="text-[10px] font-mono text-slate-500">ARCHIVE .ZIP</span>
+              </div>
+              <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                Template de projet HISE préconfiguré avec conteneurs de samples, mapping automatique et interface de presets XML.
+              </p>
+            </div>
+            <button onclick="downloadBoilerplate('hise')" class="w-full py-2.5 px-3 rounded-full bg-white/5 hover:bg-white/15 text-slate-200 border border-white/10 font-mono text-xs transition flex items-center justify-center gap-2">
+              <span>&darr;</span> Télécharger le Projet HISE
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ========================================================= -->
+  <!-- FOOTER LMS ÉPURÉ -->
+  <!-- ========================================================= -->
+  <footer class="bg-[#090A0C] border-t border-white/5 py-8 text-slate-500 text-xs font-mono mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div>
+        &copy; 2026 AudioForge Lab SAS &bull; VST3 &bull; AU &bull; CMake &bull; JUCE &bull; HISE
+      </div>
+      <div class="flex flex-wrap items-center gap-4 text-slate-400">
+        <a href="/index.html" class="hover:text-white transition">Retour au site</a>
+        <a href="/legal/cgu-cgv.html" class="hover:text-white transition">CGU/CGV</a>
+        <a href="/legal/confidentialite.html" class="hover:text-white transition">Confidentialité</a>
+        <a href="/legal/cookies.html" class="hover:text-white transition">Cookies</a>
+        <a href="/legal/remboursement.html" class="hover:text-white transition">Remboursement</a>
+        <a href="mailto:contact@audioforge-lab.io" class="hover:text-[#f59e0b] transition">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts d'application -->
+  <script src="/js/auth-gate.js"></script>
+  <script src="/js/sandbox-dsp.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/cookie-banner.js"></script>
+</body>
+</html>

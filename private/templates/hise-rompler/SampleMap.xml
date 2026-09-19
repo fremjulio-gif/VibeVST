@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<samplemap ID="AudioForge_SampleMap" CrossfadeMode="EqualPower" SaveMode="Relative">
+  <!-- Mapping Zone 1 : Basses (C1 - B2) -->
+  <sample FileName="AudioFiles/Rompler_C1_v1_rr1.wav" Root="36" LowKey="24" HighKey="39" LowVel="1" HighVel="64" RoundRobin="1" Volume="0.0"/>
+  <sample FileName="AudioFiles/Rompler_C1_v2_rr1.wav" Root="36" LowKey="24" HighKey="39" LowVel="65" HighVel="127" RoundRobin="1" Volume="0.0"/>
+  <sample FileName="AudioFiles/Rompler_C1_v1_rr2.wav" Root="36" LowKey="24" HighKey="39" LowVel="1" HighVel="64" RoundRobin="2" Volume="0.0"/>
+  <sample FileName="AudioFiles/Rompler_C1_v2_rr2.wav" Root="36" LowKey="24" HighKey="39" LowVel="65" HighVel="127" RoundRobin="2" Volume="0.0"/>
+
+  <!-- Mapping Zone 2 : Médiums (C3 - B4) -->
+  <sample FileName="AudioFiles/Rompler_C3_v1_rr1.wav" Root="60" LowKey="40" HighKey="72" LowVel="1" HighVel="64" RoundRobin="1" Volume="0.0"/>
+  <sample FileName="AudioFiles/Rompler_C3_v2_rr1.wav" Root="60" LowKey="40" HighKey="72" LowVel="65" HighVel="127" RoundRobin="1" Volume="0.0"/>
+  <sample FileName="AudioFiles/Rompler_C3_v1_rr2.wav" Root="60" LowKey="40" HighKey="72" LowVel="1" HighVel="64" RoundRobin="2" Volume="0.0"/>
+  <sample FileName="AudioFiles/Rompler_C3_v2_rr2.wav" Root="60" LowKey="40" HighKey="72" LowVel="65" HighVel="127" RoundRobin="2" Volume="0.0"/>
+
+  <!-- Mapping Zone 3 : Aigus (C5 - G7) -->
+  <sample FileName="AudioFiles/Rompler_C5_v1_rr1.wav" Root="84" LowKey="73" HighKey="108" LowVel="1" HighVel="64" RoundRobin="1" Volume="0.0"/>
+  <sample FileName="AudioFiles/Rompler_C5_v2_rr1.wav" Root="84" LowKey="73" HighKey="108" LowVel="65" HighVel="127" RoundRobin="1" Volume="0.0"/>
+  <sample FileName="AudioFiles/Rompler_C5_v1_rr2.wav" Root="84" LowKey="73" HighKey="108" LowVel="1" HighVel="64" RoundRobin="2" Volume="0.0"/>
+  <sample FileName="AudioFiles/Rompler_C5_v2_rr2.wav" Root="84" LowKey="73" HighKey="108" LowVel="65" HighVel="127" RoundRobin="2" Volume="0.0"/>
+</samplemap>

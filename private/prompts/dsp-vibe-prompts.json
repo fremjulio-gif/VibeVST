@@ -1,0 +1,37 @@
+[
+  {
+    "id": "prompt-01-dsp-engine",
+    "title": "Prompt 1 : Moteur DSP Temps Réel Pur",
+    "targetLLM": "Claude 3.5 Sonnet / GPT-4o",
+    "description": "Génère une classe de traitement DSP C++20 sans allocation dynamique, vectorisable et thread-safe pour processBlock.",
+    "promptText": "Tu es un ingénieur C++ DSP Senior spécialisé dans le framework JUCE 8 et les systèmes temps réel stricts (Real-Time Safety).\n\nMISSION : Écris une classe C++ 'DistortionEngine' traitant un tampon audio flottant stéréo (juce::AudioBuffer<float>).\n\nCONTRAINTES ABSOLUES TEMPS RÉEL :\n1. Aucune allocation dynamique sur le tas (interdiction absolue de new, malloc, std::vector, resize).\n2. Aucune primitive de blocage (interdiction de std::mutex, lock, wait).\n3. Aucune opération d'Entrée/Sortie (pas d'écriture fichier, pas de std::cout, pas de DBG()).\n4. Marque toutes les méthodes de traitement avec 'noexcept' et [[nodiscard]].\n5. Implémente trois modes de transfert : (a) Soft Tanh, (b) Saturation Diode Asymétrique y = x / (1 + |x|), (c) Hard Clip.\n6. Utilise juce::SmoothedValue<float> pour lisser le Drive (0 à 24 dB) et le Ceiling (-24 à 0 dBFS) sans zipper noise.\n\nFournis le fichier header (.h) et l'implémentation (.cpp) avec commentaires professionnels."
+  },
+  {
+    "id": "prompt-02-apvts-architecture",
+    "title": "Prompt 2 : Architecture APVTS & Cache Atomique",
+    "targetLLM": "Claude 3.5 Sonnet / GPT-4o",
+    "description": "Crée l'arborescence APVTS complète avec mise en cache des pointeurs std::atomic<float>* dans le constructeur.",
+    "promptText": "Tu es un architecte logiciel audio expert JUCE.\n\nMISSION : Configure la gestion complète des paramètres d'un plugin VST3/AU avec juce::AudioProcessorValueTreeState (APVTS).\n\nEXIGENCES :\n1. Rédige la méthode statique createParameterLayout() exposant 4 paramètres : 'drive' (0 à 24 dB, skew 0.7), 'ceiling' (-24 à 0 dBFS), 'mix' (0 à 100%), 'mode' (Choice : Soft Tanh, Diode, Hard Clip).\n2. Dans le constructeur de l'AudioProcessor, résous et mets en cache les pointeurs bruts std::atomic<float>* comme membres privés de classe.\n3. Dans processBlock(), lis les paramètres via load(std::memory_order_relaxed) sans JAMAIS invoquer getRawParameterValue() avec une chaîne de caractères dans la boucle audio.\n4. Implémente getStateInformation() et setStateInformation() avec sérialisation XML thread-safe."
+  },
+  {
+    "id": "prompt-03-custom-lookandfeel",
+    "title": "Prompt 3 : LookAndFeel Vectoriel Hardware DAW",
+    "targetLLM": "Claude 3.5 Sonnet / GPT-4o",
+    "description": "Génère un composant LookAndFeel JUCE sur-mesure reproduisant l'apparence d'un potentiomètre rotatif métallique.",
+    "promptText": "Tu es un designer d'interface utilisateur et développeur C++ JUCE Graphics.\n\nMISSION : Crée une classe dérivée de juce::LookAndFeel_V4 pour dessiner un potentiomètre rotatif matériel haut de gamme (style matériel de studio analogique).\n\nSPÉCIFICATIONS GRAPHIQUES :\n1. Surcharge la méthode drawRotarySlider().\n2. Dessine un corps de bouton métallique circulaire avec dégradé radial (du gris acier #3a4153 au noir profond #151821) et ombre portée douce.\n3. Dessine une encoche indicatrice lumineuse Cyber Cyan (#00f0ff) ou Ambre (#ffaa00) avec effet de halo lumineux (glow).\n4. Affiche un arc de graduation vectoriel discret autour du potentiomètre représentant la valeur actuelle.\n5. Assure un rendu vectoriel ultra-net et fluide quel que soit le facteur d'échelle DPI de l'écran."
+  },
+  {
+    "id": "prompt-04-realtime-scope",
+    "title": "Prompt 4 : Oscilloscope 60 FPS Découplé (Timer)",
+    "targetLLM": "Claude 3.5 Sonnet / GPT-4o",
+    "description": "Conçois un composant d'oscilloscope fluide à 60 FPS sans aucun impact sur les performances du thread audio.",
+    "promptText": "Tu es un ingénieur spécialiste de l'UI temps réel sous JUCE.\n\nMISSION : Développe un composant d'oscilloscope temps réel (Waveform Oscilloscope) pour surveiller le signal audio sortant.\n\nARCHITECTURE SANS BLOCAGE :\n1. Utilise un tampon circulaire sans verrou (juce::AbstractFifo) pour transmettre les échantillons audio du thread audio (processBlock) vers le thread graphique sans jamais bloquer.\n2. La classe visuelle hérite de juce::Component et juce::Timer, cadencée à 60 Hz (startTimerHz(60)).\n3. Dans timerCallback(), lis les données prêtes dans la FIFO et déclenche repaint().\n4. Dans paint(), trace la forme d'onde avec une couleur néon cyan, une persistance phosphorescente de style tube cathodique CRT et une grille de repères."
+  },
+  {
+    "id": "prompt-05-pluginval-audit",
+    "title": "Prompt 5 : Audit Temps Réel & Validation pluginval",
+    "targetLLM": "Claude 3.5 Sonnet / GPT-4o",
+    "description": "Script et protocole d'audit automatique du code C++ pour passer les tests pluginval de niveau 10 sans échec.",
+    "promptText": "Tu es un auditeur qualité et ingénieur QA spécialisé dans les plugins VST3/AU.\n\nMISSION : Fournis un protocole complet et une checklist d'audit pour certifier qu'un plugin JUCE passe avec succès l'outil de validation industrielle 'pluginval' au niveau de sévérité maximal (Strictness Level 10).\n\nPOINTS D'AUDIT :\n1. Gestion des tailles de blocs variables (de 1 échantillon à 8192 échantillons).\n2. Gestion des taux d'échantillonnage extrêmes (22050 Hz à 384 kHz).\n3. Protection absolue contre les nombres dénormalisés (ScopedNoDenormals).\n4. Vérification de l'absence de fuites de mémoire (LeakDetector) et d'accès concurrents (Data Races).\n5. Ligne de commande exacte pour exécuter pluginval en mode Headless dans une chaîne CI/CD GitHub Actions."
+  }
+]
