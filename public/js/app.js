@@ -520,34 +520,62 @@ const App = (() => {
   }
 
   function getLocalLessonFallback(courseId, lessonId) {
-    return `### Bienvenue dans la leçon ${lessonId}
-Dans ce module, nous abordons en détail l'ingénierie audio numérique et l'implémentation logicielle.
+    if (courseId === 'lowcode') {
+      return `### Action Immédiate // Leçon ${lessonId}
+1. Déposez vos fichiers .wav découpés aux passages par zéro dans le dossier \`AudioFiles/\` de votre projet HISE.
+2. Ouvrez le \`Sample Map Editor\` et activez l'auto-mapping par jetons de nommage (Token 2 = Note, Token 3 = Vélocité).
+3. Liez les faders de l'enveloppe AHDSR et le navigateur de presets XML via le script ci-dessous :
 
-**Points clés couverts dans cette vidéo :**
-- Architecture logicielle conforme aux exigences temps réel.
-- Analyse des compromis CPU / latence à 48kHz et 96kHz.
-- Mise en pratique avec le code source fourni dans l'onglet **Ressources & Boilerplates**.
+\`\`\`javascript
+// Interface.js : Liaison directe des contrôles AHDSR & Filtre SVF
+const var AmpEnv = Synth.getModulator("AmpEnvelope");
+const var knbAttack = Content.addKnob("knbAttack", 40, 280);
+knbAttack.setRange(1.0, 3000.0, 1.0);
+knbAttack.setControlCallback(function(c, v) { AmpEnv.setAttribute(AmpEnv.Attack, v); });
+\`\`\`
+
+*Action : Chargez ce script dans l'éditeur HISE puis exportez votre VST3/AU via Export -> Export as VSTi/AUi.*`;
+    }
+
+    if (courseId === 'business') {
+      return `### Action Immédiate // Leçon ${lessonId}
+1. Configurez vos identifiants Apple Developer dans les variables du script de notarisation ci-dessous.
+2. Signez vos binaires compilés avec Hardened Runtime (\`codesign --options runtime\`).
+3. Soumettez l'archive au service de validation Apple et agrafez le ticket d'approbation :
+
+\`\`\`bash
+# Notarisation macOS sans blocage Gatekeeper
+codesign --force --deep --strict --options runtime --timestamp --sign "$DEV_ID" "$PLUGIN_PATH"
+ditto -c -k --keepParent "$PLUGIN_PATH" "${PLUGIN_NAME}.zip"
+xcrun notarytool submit "${PLUGIN_NAME}.zip" --apple-id "$APPLE_ID" --team-id "$TEAM_ID" --password "$APP_PWD" --wait
+xcrun stapler staple "$PLUGIN_PATH"
+\`\`\`
+
+*Action : Exécutez ce script dans votre terminal avant de déployer le binaire sur Lemon Squeezy.*`;
+    }
+
+    return `### Action Immédiate // Leçon ${lessonId}
+1. Interdiction de tout \`new\`, \`malloc\` ou verrou bloquant dans la méthode \`processBlock()\`.
+2. Chargez les gains lissés via \`juce::SmoothedValue<float>\` pour supprimer le zipper noise lors des mouvements de curseur.
+3. Appliquez la fonction de transfert saturante directement sur le tampon audio stéréo :
 
 \`\`\`cpp
-// Exemple : Traitement d'un bloc d'échantillons sans allocation dynamique
-void processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages) noexcept
+// Traitement non-linéaire temps réel sans allocation
+void processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer&) noexcept
 {
     juce::ScopedNoDenormals noDenormals;
-    const auto totalNumInputChannels = getTotalNumInputChannels();
-    const auto numSamples = buffer.getNumSamples();
+    const float drive = smoothedDrive.getNextValue();
+    const float ceiling = smoothedCeiling.getNextValue();
 
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
-    {
-        auto* channelData = buffer.getWritePointer(channel);
-        for (int sample = 0; sample < numSamples; ++sample)
-        {
-            channelData[sample] = std::tanh(channelData[sample] * 2.0f);
-        }
+    for (int ch = 0; ch < buffer.getNumChannels(); ++ch) {
+        auto* data = buffer.getWritePointer(ch);
+        for (int i = 0; i < buffer.getNumSamples(); ++i)
+            data[i] = ceiling * std::tanh(data[i] * drive);
     }
 }
 \`\`\`
 
-*Utilise le bac à sable DSP ci-dessous pour tester et visualiser la courbe de saturation.*`;
+*Action : Testez la réponse de cet algorithme dans le banc d'essai DSP ci-dessous.*`;
   }
 
   function getFallbackPrompts() {

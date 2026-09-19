@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AudioForge // Crée et vends tes propres plugins VST en un week-end</title>
-  <meta name="description" content="Passe de l'idée au binaire fonctionnel et commercialisable grâce au Low-Code (HISE/RNBO) et au Vibe Coding (JUCE + IA). Micro-formations pour créateurs audio et beatmakers.">
+  <meta name="description" content="Du prototype au binaire VST3/AU commercialisable via Low-Code (HISE) et Vibe Coding (JUCE + IA).">
   
   <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,17 +18,12 @@
               950: '#090A0C',
               900: '#0d0f14',
               850: '#12151c',
-              800: '#181c24',
-              700: '#222733',
-              600: '#2d3342',
-              500: '#434b5e',
               border: 'rgba(255, 255, 255, 0.08)',
             },
             accent: {
               led: '#22c55e',
               amber: '#f59e0b',
-              cyan: '#38bdf8',
-              red: '#f43f5e'
+              cyan: '#38bdf8'
             }
           },
           fontFamily: {
@@ -49,141 +44,110 @@
   <!-- ========================================================= -->
   <!-- NAVIGATION FLOTTANTE (FLOATING GLASS PILL) -->
   <!-- ========================================================= -->
-  <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-5xl glass-pill px-4 sm:px-6 py-3 flex items-center justify-between transition-all duration-300">
-    
-    <!-- Marque & Statut Matériel -->
-    <div class="flex items-center space-x-3 sm:space-x-4">
-      <a href="#" class="flex items-center space-x-2.5 group">
-        <div class="w-7 h-7 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-slate-200 group-hover:border-white/30 transition">
-          <svg class="w-3.5 h-3.5 text-[#38bdf8]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-          </svg>
-        </div>
-        <span class="font-mono font-medium tracking-tight text-xs sm:text-sm text-white flex items-center gap-1.5">
-          AUDIOFORGE<span class="text-[10px] px-1.5 py-0.2 rounded bg-white/10 text-slate-300 border border-white/10">LAB</span>
-        </span>
-      </a>
+  <nav class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] max-w-4xl glass-pill px-5 py-3 flex items-center justify-between">
+    <a href="#" class="flex items-center space-x-2.5">
+      <span class="w-2 h-2 rounded-full bg-[#38bdf8]"></span>
+      <span class="font-mono font-medium tracking-tight text-xs sm:text-sm text-white">
+        AUDIOFORGE<span class="text-[10px] ml-1 px-1.5 py-0.2 rounded bg-white/10 text-slate-400">LAB</span>
+      </span>
+    </a>
 
-      <div class="hidden md:flex items-center space-x-2 pl-3 border-l border-white/10 font-mono text-[11px] text-slate-400">
-        <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
-        <span>DSP ENGINE ONLINE</span>
-        <span class="text-slate-600">&bull;</span>
-        <span class="text-slate-400">48kHz / 32-bit</span>
-      </div>
-    </div>
-
-    <!-- Liens Navigation -->
-    <div class="hidden lg:flex items-center space-x-6 text-xs font-mono tracking-tight text-slate-400">
-      <a href="#demo" class="hover:text-white transition">DÉMO VST</a>
+    <div class="hidden sm:flex items-center space-x-6 text-xs font-mono text-slate-400">
+      <a href="#demo" class="hover:text-white transition">DÉMO</a>
       <a href="#formations" class="hover:text-white transition">FORMATIONS</a>
-      <a href="#methode" class="hover:text-white transition">MÉTHODE</a>
-      <a href="#lead-magnet" class="hover:text-[#f59e0b] transition text-slate-300">FREE PLUGIN</a>
-      <a href="#legal" class="hover:text-white transition">SDK & LÉGAL</a>
+      <a href="#lead-magnet" class="hover:text-white transition">PLUGIN OFFERT</a>
     </div>
 
-    <!-- Actions CTA -->
-    <div class="flex items-center space-x-2 sm:space-x-3">
-      <a href="/dashboard.html" class="px-3 py-1.5 text-xs font-mono text-slate-300 hover:text-white border border-white/10 hover:border-white/20 rounded-full transition bg-white/5 flex items-center gap-1.5">
+    <div class="flex items-center space-x-2.5">
+      <a href="/dashboard.html" class="px-3.5 py-1.5 text-xs font-mono text-slate-300 hover:text-white border border-white/10 hover:border-white/20 rounded-full transition bg-white/5 flex items-center gap-1.5">
         <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
-        <span class="hidden sm:inline">Espace Apprenant</span>
-        <span class="sm:hidden">LMS</span>
+        <span>Espace Membre</span>
       </a>
       <a href="#formations" class="glass-button-primary px-3.5 py-1.5 text-xs font-mono font-medium tracking-wide uppercase rounded-full">
-        <span>Formations</span>
+        <span>Accès</span>
       </a>
     </div>
   </nav>
 
   <main>
     <!-- ========================================================= -->
-    <!-- 1. HERO SECTION (ÉPURE TOTALE APPLE LIQUID GLASS) -->
+    <!-- 1. HERO SECTION : PROMESSE FORTE & 3 CHIFFRES CLÉS -->
     <!-- ========================================================= -->
-    <section class="relative pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden chassis-bg border-b border-white/5">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <section class="relative pt-40 pb-24 md:pt-48 md:pb-32 chassis-bg border-b border-white/5">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <!-- En-tête Hero textuelle contenue -->
         <div class="text-center max-w-[680px] mx-auto mb-16">
-          
-          <!-- Badge sobre -->
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-slate-300 font-mono text-xs mb-8">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
-            <span>MÉTHODE DSP 2026</span>
-            <span class="text-slate-600">&bull;</span>
-            <span class="text-slate-400">LOW-CODE & VIBE CODING</span>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 font-mono text-xs mb-6">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#22c55e]"></span>
+            <span>MÉTHODE DSP LOW-CODE & VIBE CODING</span>
           </div>
 
-          <!-- Headline haute précision -->
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold text-white tracking-[-0.03em] leading-[1.08] mb-6">
             Crée et vends tes propres plugins VST en un week-end.
           </h1>
 
-          <!-- Sub-headline aérée -->
-          <p class="text-base sm:text-lg text-slate-400 font-normal leading-relaxed mb-10 max-w-[620px] mx-auto">
-            Passe de l'idée au binaire VST3/AU fonctionnel et commercialisable grâce au <span class="text-slate-200 font-medium">Low-Code (HISE/RNBO)</span> et au <span class="text-slate-200 font-medium">Vibe Coding (JUCE + IA)</span>, sans diplôme d'ingénieur du son.
+          <p class="text-base sm:text-lg text-slate-400 leading-relaxed mb-10 max-w-[560px] mx-auto">
+            Du prototype au binaire VST3/AU commercialisable sans diplôme d'ingénieur du son.
           </p>
 
-          <!-- CTAs Liquid Glass -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
-            <a href="#formations" class="w-full sm:w-auto glass-button-primary px-7 py-3.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase flex items-center justify-center gap-2">
-              <span>Explorer les formations</span>
-              <span class="text-slate-400">&rarr;</span>
-            </a>
-            
-            <a href="#lead-magnet" class="w-full sm:w-auto glass-button-secondary px-6 py-3.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase flex items-center justify-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span>
-              <span>Plugin gratuit offert</span>
-            </a>
+          <!-- 3 Arguments Chiffrés et Concrets -->
+          <div class="grid grid-cols-3 gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/10 mb-10 font-mono text-center">
+            <div>
+              <div class="text-2xl sm:text-3xl font-semibold text-white">&lt; 3h</div>
+              <div class="text-[11px] text-slate-500 mt-1">Du concept au premier binaire</div>
+            </div>
+            <div class="border-x border-white/10">
+              <div class="text-2xl sm:text-3xl font-semibold text-[#38bdf8]">100%</div>
+              <div class="text-[11px] text-slate-500 mt-1">VST3 & AU Multiplateforme</div>
+            </div>
+            <div>
+              <div class="text-2xl sm:text-3xl font-semibold text-[#22c55e]">0 €</div>
+              <div class="text-[11px] text-slate-500 mt-1">Royalties (Licence MIT)</div>
+            </div>
           </div>
 
-          <!-- Mini Badges de réassurance discrets -->
-          <div class="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs font-mono text-slate-400">
-            <span class="flex items-center gap-1.5">
-              <span class="text-[#38bdf8]">&bull;</span> VST3 64-bit + AU macOS
-            </span>
-            <span class="flex items-center gap-1.5">
-              <span class="text-[#38bdf8]">&bull;</span> FL Studio, Ableton, Logic Pro
-            </span>
-            <span class="flex items-center gap-1.5">
-              <span class="text-[#38bdf8]">&bull;</span> Vente Lemon Squeezy prête
-            </span>
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <a href="#formations" class="w-full sm:w-auto glass-button-primary px-7 py-3.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase">
+              Choisir une formation &rarr;
+            </a>
+            <a href="#demo" class="w-full sm:w-auto glass-button-secondary px-6 py-3.5 rounded-full text-xs font-mono font-medium tracking-wider uppercase">
+              Tester le plugin
+            </a>
           </div>
         </div>
 
         <!-- ========================================================= -->
-        <!-- MOCKUP VST INTERACTIF (DAW HARDWARE EN VERRE DÉPOLI) -->
+        <!-- MOCKUP VST INTERACTIF (DEMO AUDIO AVANT / APRÈS) -->
         <!-- ========================================================= -->
-        <div id="demo" class="max-w-4xl mx-auto">
-          <div class="glass-panel p-5 sm:p-8 relative">
+        <div id="demo" class="max-w-4xl mx-auto pt-6">
+          <div class="glass-panel p-6 sm:p-8 relative">
             
-            <!-- Plugin Header -->
-            <div class="flex flex-wrap items-center justify-between pb-4 mb-5 border-b border-white/10 gap-3">
+            <div class="flex flex-wrap items-center justify-between pb-4 mb-6 border-b border-white/10 gap-3">
               <div class="flex items-center space-x-3">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#38bdf8]"></span>
                 <span class="font-mono text-xs sm:text-sm font-semibold tracking-wider text-white">QUICK CLIPPER // VST3 ENGINE</span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400 border border-white/10">v1.2.0 DSP</span>
               </div>
 
-              <!-- Contrôles Audio Engine -->
               <div class="flex items-center space-x-2">
-                <button id="audio-play-btn" class="px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 font-mono text-xs text-slate-200 flex items-center gap-2 transition active:scale-95">
+                <button id="audio-play-btn" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 font-mono text-xs text-slate-200 flex items-center gap-2 transition active:scale-95">
                   <span id="play-icon" class="text-[#38bdf8]">&#9658;</span>
                   <span id="play-text">Démo Sonore (808 Bass)</span>
                 </button>
                 <div class="hidden sm:flex items-center space-x-1.5 font-mono text-[10px] text-slate-400 bg-black/40 px-2.5 py-1.5 rounded-full border border-white/10">
-                  <span class="text-slate-500">PEAK:</span>
+                  <span class="text-slate-500">CRÊTE:</span>
                   <span id="peak-val" class="text-slate-200 font-medium">-0.1 dBFS</span>
                 </div>
               </div>
             </div>
 
-            <!-- Écran VST & Oscilloscope Dynamique -->
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
               
-              <!-- Oscilloscope CRT Phosphor Screen -->
+              <!-- Oscilloscope -->
               <div class="lg:col-span-8 bg-[#050608] rounded-xl border border-white/10 p-3.5 relative overflow-hidden">
                 <div class="flex justify-between items-center text-[10px] font-mono text-slate-400 mb-2 border-b border-white/5 pb-2">
                   <div class="flex items-center gap-2">
-                    <span class="text-slate-300 font-medium">OSCILLOSCOPE TEMPS RÉEL</span>
+                    <span class="text-slate-300">OSCILLOSCOPE</span>
                     <span id="processing-badge" class="px-1.5 py-0.2 rounded bg-[#38bdf8]/10 text-[#38bdf8] border border-[#38bdf8]/20 text-[9px]">TRAITEMENT ACTIF</span>
                   </div>
                   <div class="flex gap-3">
@@ -192,95 +156,60 @@
                   </div>
                 </div>
 
-                <!-- Canvas de forme d'onde -->
                 <div class="relative h-44 sm:h-52 w-full crt-grid bg-[#050608] flex items-center justify-center rounded-lg">
                   <canvas id="scopeCanvas" class="w-full h-full block"></canvas>
-                  
-                  <!-- Lignes repères de plafond (Ceiling) -->
                   <div class="absolute inset-x-0 top-[20%] border-b border-dashed border-[#f59e0b]/40 pointer-events-none"></div>
                   <div class="absolute inset-x-0 bottom-[20%] border-t border-dashed border-[#f59e0b]/40 pointer-events-none"></div>
-
-                  <div class="absolute bottom-2 right-2 text-[10px] font-mono text-slate-600 pointer-events-none">
-                    CLIPPER HARD/SOFT SHAPER
-                  </div>
                 </div>
 
-                <!-- Sélecteur Avant / Après (A/B Test) -->
-                <div class="mt-3 pt-2.5 border-t border-white/5 flex flex-wrap items-center justify-between gap-2">
-                  <div class="flex items-center gap-2">
-                    <span class="text-xs font-mono text-slate-400">Mode :</span>
-                    
-                    <div class="inline-flex p-0.5 rounded-full bg-white/5 border border-white/10">
-                      <button id="btn-avant" class="px-3 py-1 rounded-full text-xs font-mono transition text-slate-400 hover:text-white">
-                        Avant (Bypass)
-                      </button>
-                      <button id="btn-apres" class="px-3 py-1 rounded-full text-xs font-mono transition bg-white/15 text-white font-medium shadow-sm border border-white/20">
-                        Après (Clipper VST)
-                      </button>
-                    </div>
+                <!-- A/B Switch -->
+                <div class="mt-3 pt-2.5 border-t border-white/5 flex items-center justify-between gap-2">
+                  <div class="inline-flex p-0.5 rounded-full bg-white/5 border border-white/10">
+                    <button id="btn-avant" class="px-3 py-1 rounded-full text-xs font-mono transition text-slate-400 hover:text-white">
+                      Avant (Bypass)
+                    </button>
+                    <button id="btn-apres" class="px-3 py-1 rounded-full text-xs font-mono transition bg-white/15 text-white font-medium shadow-sm border border-white/20">
+                      Après (Clipper VST)
+                    </button>
                   </div>
-
-                  <div class="text-[11px] font-mono text-slate-400">
-                    <span class="text-slate-500">Algorithme :</span> <span class="text-slate-300">Hyperbolic Tangent DSP</span>
-                  </div>
+                  <span class="text-[11px] font-mono text-slate-500">Hyperbolic Tangent DSP</span>
                 </div>
               </div>
 
-              <!-- Panneau de Contrôle Matériel (Potentiomètres Vectoriels) -->
-              <div class="lg:col-span-4 flex flex-col justify-between space-y-5 bg-white/[0.02] p-4 sm:p-5 rounded-xl border border-white/10">
-                
+              <!-- Contrôles Rotatifs -->
+              <div class="lg:col-span-4 flex flex-col justify-between space-y-5 bg-white/[0.02] p-5 rounded-xl border border-white/10">
                 <div class="text-center font-mono text-xs text-slate-400 pb-2 border-b border-white/5 flex justify-between items-center">
-                  <span>PARAMÈTRES DSP</span>
+                  <span>DSP CONTROLS</span>
                   <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span>
                 </div>
 
-                <!-- Bouton 1 : DRIVE -->
                 <div class="flex flex-col items-center">
                   <div class="flex justify-between w-full text-[11px] font-mono text-slate-300 mb-1.5">
-                    <span class="text-[#38bdf8] font-medium">DRIVE (IN)</span>
+                    <span class="text-[#38bdf8] font-medium">DRIVE</span>
                     <span id="drive-val" class="text-slate-400">+6.5 dB</span>
                   </div>
-                  
                   <div class="relative flex items-center justify-center my-1">
                     <div class="metal-knob flex items-center justify-center cursor-pointer transition transform active:scale-95" id="drive-knob">
                       <div class="w-1 h-4 bg-[#38bdf8] rounded-full transform -rotate-12 origin-bottom shadow-sm" id="drive-indicator"></div>
                     </div>
                   </div>
-
                   <input type="range" id="drive-slider" min="0" max="18" step="0.5" value="6.5" class="w-full mt-3 audio-slider slider-cyan">
                 </div>
 
-                <!-- Bouton 2 : CEILING -->
                 <div class="flex flex-col items-center">
                   <div class="flex justify-between w-full text-[11px] font-mono text-slate-300 mb-1.5">
                     <span class="text-[#f59e0b] font-medium">CEILING</span>
                     <span id="ceiling-val" class="text-slate-400">-0.8 dBFS</span>
                   </div>
-
                   <div class="relative flex items-center justify-center my-1">
                     <div class="metal-knob flex items-center justify-center cursor-pointer transition transform active:scale-95" id="ceiling-knob">
                       <div class="w-1 h-4 bg-[#f59e0b] rounded-full transform rotate-45 origin-bottom shadow-sm" id="ceiling-indicator"></div>
                     </div>
                   </div>
-
                   <input type="range" id="ceiling-slider" min="-12" max="0" step="0.1" value="-0.8" class="w-full mt-3 audio-slider slider-amber">
                 </div>
-
-                <!-- Oversampling Tag -->
-                <div class="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono">
-                  <span class="text-slate-400">OVERSAMPLING :</span>
-                  <span class="px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#38bdf8] font-medium">4X LINEAR</span>
-                </div>
               </div>
 
-            </div>
-
-            <!-- Notes de bas de mock-up -->
-            <div class="mt-4 pt-3 border-t border-white/5 flex flex-wrap items-center justify-between text-[11px] font-mono text-slate-500 gap-2">
-              <div>&bull; Code source C++ / JUCE & HISE généré par Vibe Coding en 1 heure</div>
-              <div class="text-slate-400 flex items-center gap-1">
-                <span>Interagis avec les potentiomètres rotatifs et le mode A/B</span>
-              </div>
             </div>
 
           </div>
@@ -290,306 +219,81 @@
     </section>
 
     <!-- ========================================================= -->
-    <!-- 2. SECTION LEAD MAGNET (CAPTURE MINIMALISTE HAUTE VALEUR) -->
+    <!-- 2. FORMATIONS & TARIFS (3 OFFRES DIRECTES) -->
     <!-- ========================================================= -->
-    <section id="lead-magnet" class="py-28 md:py-32 bg-[#090A0C] border-b border-white/5 relative">
+    <section id="formations" class="py-24 md:py-32 chassis-bg border-b border-white/5 relative">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="hairline-card p-6 sm:p-12">
-          
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div class="lg:col-span-7 max-w-[540px]">
-              <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#f59e0b] font-mono text-xs mb-4">
-                <span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span>
-                <span>BUNDLE GRATUIT // CODE SOURCE OFFERT</span>
-              </div>
-
-              <h2 class="text-2xl sm:text-3xl font-semibold text-white tracking-[-0.03em] leading-snug mb-3">
-                Télécharge <span class="text-[#38bdf8] font-mono">"Quick Clipper VST3"</span> et son projet complet
-              </h2>
-
-              <p class="text-slate-400 text-sm sm:text-base leading-relaxed mb-6">
-                Un plugin de distorsion/clipper compilé offert avec son code source complet pour comprendre l'architecture en 10 minutes.
-              </p>
-
-              <!-- Points clés inclus -->
-              <div class="space-y-2.5 mb-8 text-xs sm:text-sm font-mono text-slate-300">
-                <div class="flex items-center gap-2.5">
-                  <span class="text-[#38bdf8]">&bull;</span>
-                  <span>Binaire compilé prêt à glisser dans ton dossier VST3 (Win & Mac)</span>
-                </div>
-                <div class="flex items-center gap-2.5">
-                  <span class="text-[#38bdf8]">&bull;</span>
-                  <span>Code C++ / JUCE commenté ligne par ligne + template CMake universel</span>
-                </div>
-                <div class="flex items-center gap-2.5">
-                  <span class="text-[#38bdf8]">&bull;</span>
-                  <span>Guide prompt IA pour ajouter ton propre algorithme en 5 minutes</span>
-                </div>
-              </div>
-
-              <!-- Formulaire de capture -->
-              <form id="lead-form" class="flex flex-col sm:flex-row gap-2.5">
-                <input 
-                  type="email" 
-                  id="lead-email" 
-                  required 
-                  placeholder="Entre ton e-mail de beatmaker..." 
-                  class="flex-1 px-4 py-3 rounded-full bg-white/5 border border-white/10 text-white placeholder-slate-500 font-mono text-xs focus:outline-none focus:border-white/30 transition"
-                >
-                <button 
-                  type="submit" 
-                  id="lead-btn"
-                  class="px-6 py-3 rounded-full bg-[#f59e0b] hover:bg-[#d97706] text-black font-mono font-semibold text-xs uppercase tracking-wider transition duration-200 flex items-center justify-center gap-2 whitespace-nowrap"
-                >
-                  <span>Télécharger</span>
-                  <span>&darr;</span>
-                </button>
-              </form>
-
-              <div id="lead-success" class="hidden mt-3 p-3 rounded-xl bg-white/5 border border-[#22c55e]/30 text-[#22c55e] text-xs font-mono flex items-center gap-2">
-                <span>&check;</span>
-                <span>Lien de téléchargement sécurisé envoyé ! Vérifie ta boîte de réception.</span>
-              </div>
-
-              <p class="text-[11px] text-slate-500 font-mono mt-3">
-                Zéro spam. Désinscription en 1 clic. Format ZIP direct (48 Mo).
-              </p>
-            </div>
-
-            <!-- Aperçu de l'archive ZIP minimaliste -->
-            <div class="lg:col-span-5 flex justify-center">
-              <div class="w-full max-w-xs p-5 rounded-xl bg-[#050608] border border-white/10 shadow-xl relative">
-                <div class="flex justify-between items-center pb-3 border-b border-white/10 text-[10px] font-mono text-slate-400">
-                  <span>PACKAGE: ARCHIVE .ZIP</span>
-                  <span class="text-[#38bdf8]">48.2 MB</span>
-                </div>
-
-                <div class="my-4 p-3.5 rounded-lg bg-white/[0.02] border border-white/5 font-mono text-xs space-y-2">
-                  <div class="flex items-center gap-2 text-slate-200">
-                    <span class="w-2 h-2 rounded-full bg-[#38bdf8]"></span>
-                    <span class="font-semibold">QuickClipper_Source/</span>
-                  </div>
-                  <div class="pl-4 text-slate-400 text-[11px] space-y-1">
-                    <div>&bull; PluginProcessor.cpp</div>
-                    <div>&bull; PluginEditor.cpp</div>
-                    <div>&bull; CMakeLists.txt</div>
-                    <div class="text-[#f59e0b]">&bull; QuickClipper.vst3 (Win)</div>
-                    <div class="text-[#f59e0b]">&bull; QuickClipper.component (AU)</div>
-                    <div class="text-slate-500">&bull; Prompts_Calibration_IA.md</div>
-                  </div>
-                </div>
-
-                <div class="pt-2 border-t border-white/10 flex items-center justify-between text-[11px] font-mono text-slate-400">
-                  <span>Licence : MIT Libre</span>
-                  <span class="text-[#22c55e]">100% Gratuit</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- 3. CATALOGUE DES FORMATIONS (AÉRATION & PRÉCISION STUDIO) -->
-    <!-- ========================================================= -->
-    <section id="formations" class="py-28 md:py-32 chassis-bg border-b border-white/5 relative">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div class="text-center max-w-[680px] mx-auto mb-20">
-          <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#38bdf8] font-mono text-xs mb-4">
-            <span>CURRICULUM PRATIQUE</span>
-          </div>
+        <div class="text-center max-w-[540px] mx-auto mb-16">
           <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-[-0.03em]">
-            Choisis ton parcours : Low-Code ou Vibe Coding
+            Formations Pratiques
           </h2>
-          <p class="mt-4 text-base text-slate-400 leading-relaxed">
-            Trois modules conçus pour publier ton premier binaire commercial en moins de 48 heures chrono.
+          <p class="mt-3 text-slate-400 text-sm">
+            Accès immédiat aux vidéos, code source complet et templates compilables.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
           
-          <!-- ============================================== -->
-          <!-- CARTE 1 : Parcours Low-Code (39 €) -->
-          <!-- ============================================== -->
-          <div class="hairline-card p-7 flex flex-col justify-between group">
+          <!-- Carte 1 : Low-Code -->
+          <div class="hairline-card p-6 flex flex-col justify-between">
             <div>
-              <div class="flex justify-between items-center mb-4">
-                <span class="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#38bdf8] font-mono text-[11px] font-medium uppercase tracking-wider">
-                  Low-Code
-                </span>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#38bdf8] font-mono text-[11px]">Low-Code</span>
                 <span class="text-xs font-mono text-slate-500">2h45</span>
               </div>
-
-              <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-slate-100 transition">
-                Rompler &amp; Instrument Express
-              </h3>
-
-              <div class="flex items-baseline gap-2 mb-4">
-                <span class="text-3xl font-semibold font-mono text-white">39 €</span>
-                <span class="text-xs font-mono text-slate-500">Paiement unique</span>
-              </div>
-
-              <p class="text-sm text-slate-400 leading-relaxed pb-4 border-b border-white/10 mb-6">
-                Conçois un instrument virtuel sous <strong class="text-slate-200">HISE et RNBO</strong> en moins de 3 heures, sans taper une seule ligne de C++.
-              </p>
-
-              <div class="space-y-3 mb-8">
-                <p class="text-xs font-mono uppercase tracking-wider text-slate-500 font-medium">Inclus dans la formation :</p>
-                <ul class="space-y-2.5 text-xs font-mono text-slate-300">
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#38bdf8] mt-0.5">&bull;</span>
-                    <span>Import/mapping de samples multi-vélocités et round-robin.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#38bdf8] mt-0.5">&bull;</span>
-                    <span>Interface graphique personnalisée avec gestionnaire de presets.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#38bdf8] mt-0.5">&bull;</span>
-                    <span>Export direct VST3 (Windows) et AU / VST3 (macOS Universal).</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#38bdf8] mt-0.5">&bull;</span>
-                    <span>Template de projet HISE complet prêt à être compilé.</span>
-                  </li>
-                </ul>
-              </div>
+              <h3 class="text-lg font-semibold text-white mb-2">Rompler HISE & RNBO</h3>
+              <div class="text-3xl font-semibold font-mono text-white mb-4">39 €</div>
+              <ul class="space-y-2 text-xs font-mono text-slate-400 mb-6 border-t border-white/5 pt-4">
+                <li>&bull; Mapping d'échantillons & Round-Robin</li>
+                <li>&bull; Script d'interface vectorielle</li>
+                <li>&bull; Export binaire VST3 / AU macOS</li>
+              </ul>
             </div>
-
-            <div>
-              <button onclick="handleCheckout('low-code', 'Parcours Low-Code : Rompler & Instrument Express', 39)" class="w-full py-3 px-4 rounded-full bg-white/5 hover:bg-white/15 text-white border border-white/10 hover:border-white/25 font-mono text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-2">
-                <span>Acheter la formation (39 €)</span>
-                <span>&rarr;</span>
-              </button>
-              <p class="text-[10px] text-center font-mono text-slate-500 mt-2.5">Garantie 14 jours</p>
-            </div>
+            <button onclick="handleCheckout('low-code', 'Parcours Low-Code : Rompler & Instrument Express', 39)" class="w-full py-2.5 rounded-full bg-white/5 hover:bg-white/15 text-white border border-white/10 font-mono text-xs uppercase tracking-wider transition">
+              Acheter (39 €)
+            </button>
           </div>
 
-          <!-- ============================================== -->
-          <!-- CARTE 2 : Parcours Vibe Coding (49 €) -->
-          <!-- ============================================== -->
-          <div class="hairline-card p-7 flex flex-col justify-between group">
+          <!-- Carte 2 : Vibe Coding -->
+          <div class="hairline-card p-6 flex flex-col justify-between">
             <div>
-              <div class="flex justify-between items-center mb-4">
-                <span class="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#f59e0b] font-mono text-[11px] font-medium uppercase tracking-wider">
-                  Vibe Coding
-                </span>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-[#f59e0b] font-mono text-[11px]">Vibe Coding</span>
                 <span class="text-xs font-mono text-slate-500">3h30</span>
               </div>
-
-              <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-slate-100 transition">
-                Clipper &amp; Saturateur Pro JUCE
-              </h3>
-
-              <div class="flex items-baseline gap-2 mb-4">
-                <span class="text-3xl font-semibold font-mono text-white">49 €</span>
-                <span class="text-xs font-mono text-slate-500">Paiement unique</span>
-              </div>
-
-              <p class="text-sm text-slate-400 leading-relaxed pb-4 border-b border-white/10 mb-6">
-                Développe un processeur d'effet pro sous <strong class="text-slate-200">JUCE &amp; C++</strong> grâce à des templates prêts à compiler et des prompts d'IA calibrés.
-              </p>
-
-              <div class="space-y-3 mb-8">
-                <p class="text-xs font-mono uppercase tracking-wider text-slate-500 font-medium">Inclus dans la formation :</p>
-                <ul class="space-y-2.5 text-xs font-mono text-slate-300">
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#f59e0b] mt-0.5">&bull;</span>
-                    <span>Boilerplate CMake épuré : compilation express sur VS Code.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#f59e0b] mt-0.5">&bull;</span>
-                    <span>Algos de saturation pro : soft-clipping, overdrive et wavefolder.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#f59e0b] mt-0.5">&bull;</span>
-                    <span>LookAndFeel vectoriel moderne & Oscilloscope temps réel fluide.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#f59e0b] mt-0.5">&bull;</span>
-                    <span>Script de notarisation macOS sans blocage Apple Gatekeeper.</span>
-                  </li>
-                </ul>
-              </div>
+              <h3 class="text-lg font-semibold text-white mb-2">Clipper JUCE & C++20</h3>
+              <div class="text-3xl font-semibold font-mono text-white mb-4">49 €</div>
+              <ul class="space-y-2 text-xs font-mono text-slate-400 mb-6 border-t border-white/5 pt-4">
+                <li>&bull; Algos Tanh & Diode asymétrique</li>
+                <li>&bull; CMake multiplateforme prêt à l'emploi</li>
+                <li>&bull; 5 Prompts IA calibrés pour LLM</li>
+              </ul>
             </div>
-
-            <div>
-              <button onclick="handleCheckout('vibe-coding', 'Parcours Vibe Coding : Clipper & Saturateur Pro', 49)" class="w-full py-3 px-4 rounded-full bg-white/5 hover:bg-white/15 text-white border border-white/10 hover:border-white/25 font-mono text-xs uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-2">
-                <span>Acheter la formation (49 €)</span>
-                <span>&rarr;</span>
-              </button>
-              <p class="text-[10px] text-center font-mono text-slate-500 mt-2.5">Garantie 14 jours</p>
-            </div>
+            <button onclick="handleCheckout('vibe-coding', 'Parcours Vibe Coding : Clipper & Saturateur Pro', 49)" class="w-full py-2.5 rounded-full bg-white/5 hover:bg-white/15 text-white border border-white/10 font-mono text-xs uppercase tracking-wider transition">
+              Acheter (49 €)
+            </button>
           </div>
 
-          <!-- ============================================== -->
-          <!-- CARTE 3 : BUNDLE COMPLET (69 €) -->
-          <!-- ============================================== -->
-          <div class="glass-panel p-7 flex flex-col justify-between border-white/20 relative">
+          <!-- Carte 3 : Bundle -->
+          <div class="glass-panel p-6 flex flex-col justify-between border-white/20 relative">
             <div>
-              <div class="flex justify-between items-center mb-4">
-                <span class="px-2.5 py-0.5 rounded-full bg-white/10 border border-white/20 text-white font-mono text-[11px] font-medium uppercase tracking-wider">
-                  Pack Intégral
-                </span>
+              <div class="flex justify-between items-center mb-3">
+                <span class="px-2.5 py-0.5 rounded-full bg-white/10 border border-white/20 text-white font-mono text-[11px]">Pack Intégral</span>
                 <span class="text-xs font-mono text-[#38bdf8]">RECOMMANDÉ</span>
               </div>
-
-              <h3 class="text-xl font-semibold text-white mb-2">
-                Bundle Accès Complet &amp; Templates
-              </h3>
-
-              <div class="flex items-baseline gap-2 mb-4">
-                <span class="text-3xl font-semibold font-mono text-white">69 €</span>
-                <span class="text-xs font-mono text-slate-500 line-through">88 €</span>
-                <span class="text-xs font-mono text-[#38bdf8]">Accès à vie</span>
-              </div>
-
-              <p class="text-sm text-slate-300 leading-relaxed pb-4 border-b border-white/10 mb-6">
-                L'accès illimité aux 2 parcours + la boîte à outils complète de déploiement et commercialisation.
-              </p>
-
-              <div class="space-y-3 mb-8">
-                <p class="text-xs font-mono uppercase tracking-wider text-slate-400 font-medium">Inclus dans le bundle :</p>
-                <ul class="space-y-2.5 text-xs font-mono text-slate-200">
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#38bdf8] mt-0.5">&check;</span>
-                    <span><strong class="text-white">Formations Low-Code + Vibe Coding</strong> complètes.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#38bdf8] mt-0.5">&check;</span>
-                    <span><strong class="text-white">Templates CMake</strong> optimisés et configurés multiplateforme.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#38bdf8] mt-0.5">&check;</span>
-                    <span><strong class="text-white">Kits UI Figma vectoriels</strong> : boutons et potentiomètres.</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#38bdf8] mt-0.5">&check;</span>
-                    <span><strong class="text-white">Scripts d'installation automatisés</strong> (InnoSetup & PKG).</span>
-                  </li>
-                  <li class="flex items-start gap-2.5">
-                    <span class="text-[#38bdf8] mt-0.5">&check;</span>
-                    <span>Guide complet de distribution Lemon Squeezy & Itch.io.</span>
-                  </li>
-                </ul>
-              </div>
+              <h3 class="text-lg font-semibold text-white mb-2">Bundle Accès Complet</h3>
+              <div class="text-3xl font-semibold font-mono text-white mb-4">69 €</div>
+              <ul class="space-y-2 text-xs font-mono text-slate-300 mb-6 border-t border-white/10 pt-4">
+                <li>&check; Les 2 parcours complets</li>
+                <li>&check; Scripts de notarisation macOS</li>
+                <li>&check; Installeur Windows InnoSetup</li>
+                <li>&check; Mises à jour & support inclus</li>
+              </ul>
             </div>
-
-            <div>
-              <button onclick="handleCheckout('bundle', 'Bundle Accès Complet & Templates', 69)" class="w-full py-3.5 px-4 rounded-full glass-button-primary font-mono text-xs uppercase tracking-wider flex items-center justify-center gap-2">
-                <span>Obtenir le Bundle Complet (69 €)</span>
-                <span>&rarr;</span>
-              </button>
-              <div class="flex items-center justify-center gap-3 text-[10px] font-mono text-slate-500 mt-2.5">
-                <span>&bull; Accès immédiat</span>
-                <span>&bull; Mises à jour incluses</span>
-              </div>
-            </div>
+            <button onclick="handleCheckout('bundle', 'Bundle Accès Complet & Templates', 69)" class="w-full py-3 rounded-full glass-button-primary font-mono text-xs uppercase tracking-wider">
+              Obtenir le Bundle (69 €)
+            </button>
           </div>
 
         </div>
@@ -598,375 +302,94 @@
     </section>
 
     <!-- ========================================================= -->
-    <!-- 4. SECTION MÉTHODE & PREUVES PAR L'EXEMPLE -->
+    <!-- 3. CAPTURE PLUGIN GRATUIT (LEAD MAGNET ÉPURÉ) -->
     <!-- ========================================================= -->
-    <section id="methode" class="py-28 md:py-32 bg-[#090A0C] border-b border-white/5 relative">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="lead-magnet" class="py-20 bg-[#090A0C] border-b border-white/5">
+      <div class="max-w-2xl mx-auto px-4 sm:px-6 text-center">
+        <h2 class="text-2xl font-semibold text-white mb-3">Télécharge Quick Clipper VST3</h2>
+        <p class="text-slate-400 text-sm mb-6">Binaire compilé + code source C++ complet pour tester le moteur immédiatement.</p>
         
-        <div class="text-center max-w-[680px] mx-auto mb-20">
-          <div class="inline-flex items-center gap-2 px-3 py-0.5 rounded-full bg-white/5 border border-white/10 text-slate-300 font-mono text-xs mb-4">
-            <span>MÉTHODOLOGIE LEAN DSP</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl font-semibold text-white tracking-[-0.03em]">
-            Les 3 étapes pour concevoir et vendre ton VST
-          </h2>
-          <p class="mt-4 text-base text-slate-400 leading-relaxed">
-            Une méthode pragmatique conçue pour expédier un produit audio fini sans se perdre dans la théorie.
-          </p>
+        <form id="lead-form" class="flex flex-col sm:flex-row gap-2.5 max-w-md mx-auto">
+          <input 
+            type="email" 
+            id="lead-email" 
+            required 
+            placeholder="Ton e-mail..." 
+            class="flex-1 px-4 py-2.5 rounded-full bg-white/5 border border-white/10 text-white placeholder-slate-500 font-mono text-xs focus:outline-none focus:border-white/30"
+          >
+          <button 
+            type="submit" 
+            id="lead-btn"
+            class="px-6 py-2.5 rounded-full bg-[#f59e0b] hover:bg-[#d97706] text-black font-mono font-semibold text-xs uppercase tracking-wider transition"
+          >
+            Télécharger
+          </button>
+        </form>
+
+        <div id="lead-success" class="hidden mt-4 p-3 rounded-xl bg-white/5 border border-[#22c55e]/30 text-[#22c55e] text-xs font-mono">
+          Lien envoyé ! Vérifie ta boîte de réception.
         </div>
-
-        <!-- 3 Étapes -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          
-          <div class="hairline-card p-7">
-            <div class="w-8 h-8 rounded-full bg-white/5 border border-white/15 text-slate-200 font-mono font-medium text-xs flex items-center justify-center mb-5">
-              01
-            </div>
-            <h3 class="text-lg font-semibold text-white mb-2">Choisis ton moteur</h3>
-            <p class="text-xs font-mono text-[#38bdf8] mb-3">LOW-CODE OU JUCE</p>
-            <p class="text-sm text-slate-400 leading-relaxed">
-              Pour un instrument à base d'échantillons, exploite la puissance de <strong>HISE &amp; RNBO</strong> en Low-Code. Pour un effet dynamique (clipper, distorsion, compresseur), démarre avec nos templates JUCE et des prompts IA calibrés.
-            </p>
-          </div>
-
-          <div class="hairline-card p-7">
-            <div class="w-8 h-8 rounded-full bg-white/5 border border-white/15 text-slate-200 font-mono font-medium text-xs flex items-center justify-center mb-5">
-              02
-            </div>
-            <h3 class="text-lg font-semibold text-white mb-2">Soigne l'interface (UI First)</h3>
-            <p class="text-xs font-mono text-[#f59e0b] mb-3">CONVERSION VISUELLE</p>
-            <p class="text-sm text-slate-400 leading-relaxed">
-              Les beatmakers et ingénieurs achètent d'abord avec les yeux. Intègre directement nos designs Figma : potentiomètres vectoriels, voyants discrets et oscilloscopes en temps réel pour un rendu studio haut de gamme.
-            </p>
-          </div>
-
-          <div class="hairline-card p-7">
-            <div class="w-8 h-8 rounded-full bg-white/5 border border-white/15 text-slate-200 font-mono font-medium text-xs flex items-center justify-center mb-5">
-              03
-            </div>
-            <h3 class="text-lg font-semibold text-white mb-2">Notarise et encaisse</h3>
-            <p class="text-xs font-mono text-[#22c55e] mb-3">LEMON SQUEEZY OU ITCH.IO</p>
-            <p class="text-sm text-slate-400 leading-relaxed">
-              Passe la sécurité Gatekeeper macOS grâce à nos scripts de notarisation automatisés. Déploie ta page de vente sur <strong>Lemon Squeezy</strong> et encaisse tes premiers euros avec délivrance automatique des binaires.
-            </p>
-          </div>
-
-        </div>
-
-        <!-- Bloc Études de cas & Témoignages Beatmakers -->
-        <div class="border-t border-white/10 pt-20">
-          <div class="text-center max-w-2xl mx-auto mb-14">
-            <span class="font-mono text-xs text-slate-500 uppercase tracking-widest">BUILD IN PUBLIC // TÉMOIGNAGES</span>
-            <h3 class="text-2xl font-semibold text-white mt-2">Ils ont sorti leur plugin et encaissé leurs premières ventes</h3>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <div class="hairline-card p-6 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-xs text-white">
-                      NB
-                    </div>
-                    <div>
-                      <div class="font-medium text-white text-sm">Nico B.</div>
-                      <div class="text-[11px] font-mono text-slate-500">Beatmaker Trap (FL Studio)</div>
-                    </div>
-                  </div>
-                  <span class="text-xs font-mono text-[#22c55e] bg-[#22c55e]/10 px-2 py-0.5 rounded-full border border-[#22c55e]/20">+1 420 €</span>
-                </div>
-                <p class="text-xs sm:text-sm text-slate-400 italic mb-4 leading-relaxed">
-                  "J'avais une idée de soft-clipper calibré pour les 808 depuis 2 ans. Avec le Parcours Vibe Coding, j'ai compilé mon VST3 en un samedi. Le lundi, j'avais fait 28 ventes sur Lemon Squeezy !"
-                </p>
-              </div>
-              <div class="pt-3 border-t border-white/5 flex justify-between items-center text-[11px] font-mono text-slate-500">
-                <span>Plugin : "Sauce808 Clipper"</span>
-                <span class="text-slate-400">14 jours</span>
-              </div>
-            </div>
-
-            <div class="hairline-card p-6 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-xs text-white">
-                      EM
-                    </div>
-                    <div>
-                      <div class="font-medium text-white text-sm">Elena M.</div>
-                      <div class="text-[11px] font-mono text-slate-500">Sound Designer Lo-Fi</div>
-                    </div>
-                  </div>
-                  <span class="text-xs font-mono text-[#22c55e] bg-[#22c55e]/10 px-2 py-0.5 rounded-full border border-[#22c55e]/20">380 ventes</span>
-                </div>
-                <p class="text-xs sm:text-sm text-slate-400 italic mb-4 leading-relaxed">
-                  "Le module HISE pour Rompler est magique. J'ai packagé mes enregistrements de piano feutré. L'export AU pour Logic Pro s'est fait sans une seule ligne de code."
-                </p>
-              </div>
-              <div class="pt-3 border-t border-white/5 flex justify-between items-center text-[11px] font-mono text-slate-500">
-                <span>Plugin : "DustKeys VST3/AU"</span>
-                <span class="text-slate-400">Moteur HISE</span>
-              </div>
-            </div>
-
-            <div class="hairline-card p-6 flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <div class="flex items-center space-x-3">
-                    <div class="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center font-mono text-xs text-white">
-                      KA
-                    </div>
-                    <div>
-                      <div class="font-medium text-white text-sm">Kev Audio</div>
-                      <div class="text-[11px] font-mono text-slate-500">Producteur Drill & Mixeur</div>
-                    </div>
-                  </div>
-                  <span class="text-xs font-mono text-[#22c55e] bg-[#22c55e]/10 px-2 py-0.5 rounded-full border border-[#22c55e]/20">Validé macOS</span>
-                </div>
-                <p class="text-xs sm:text-sm text-slate-400 italic mb-4 leading-relaxed">
-                  "Le script de notarisation Apple à lui seul vaut tout le pack. Mes clients sur Mac n'ont plus jamais eu le pop-up 'Application endommagée'."
-                </p>
-              </div>
-              <div class="pt-3 border-t border-white/5 flex justify-between items-center text-[11px] font-mono text-slate-500">
-                <span>Plugin : "DrillPunch VST3"</span>
-                <span class="text-slate-400">JUCE + CMake</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ========================================================= -->
-    <!-- 5. SECTION RÉASSURANCE, TECHNIQUE & LÉGAL -->
-    <!-- ========================================================= -->
-    <section id="legal" class="py-28 md:py-32 chassis-bg border-b border-white/5">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-[680px] mx-auto mb-16">
-          <span class="font-mono text-xs text-slate-500 uppercase tracking-wider">CONFORMITÉ INDUSTRIELLE & LÉGALE</span>
-          <h2 class="text-2xl sm:text-3xl font-semibold text-white mt-2">
-            Zéro zone grise. Construis sur des bases solides.
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          
-          <!-- Badge 1: Steinberg SDK -->
-          <div class="hairline-card p-6">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-7 h-7 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center font-mono font-medium text-xs">
-                VST
-              </div>
-              <h3 class="font-medium text-white text-base">Conformité SDK VST3 Steinberg</h3>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Tous nos boilerplates exploitent la licence officielle <strong class="text-slate-200">Steinberg VST3 (licence MIT)</strong>. Tu peux distribuer tes fichiers <code>.vst3</code> en toute légalité sans payer de royalties.
-            </p>
-          </div>
-
-          <!-- Badge 2: Notarisation macOS -->
-          <div class="hairline-card p-6">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-7 h-7 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center font-mono font-medium text-xs">
-                APP
-              </div>
-              <h3 class="font-medium text-white text-base">Notarisation macOS Automatisée</h3>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Scripts <code>xcrun notarytool</code> inclus. Adieu les blocages Gatekeeper sur macOS Sonoma & Sequoia. Tes acheteurs installent tes plugins sans avertissement.
-            </p>
-          </div>
-
-          <!-- Badge 3: Gestion des Licences HISE / JUCE -->
-          <div class="hairline-card p-6">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-7 h-7 rounded-full bg-white/5 border border-white/10 text-white flex items-center justify-center font-mono font-medium text-xs">
-                LIC
-              </div>
-              <h3 class="font-medium text-white text-base">Licences GPLv3 vs Commercial</h3>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-400 leading-relaxed">
-              Un guide clair pour choisir entre la licence open-source gratuite ou la licence commerciale HISE/JUCE selon ton chiffre d'affaires, en respectant la propriété intellectuelle.
-            </p>
-          </div>
-
-        </div>
-
-        <!-- DAWs Compatibilité -->
-        <div class="mt-12 p-5 rounded-2xl bg-[#050608] border border-white/10 text-center">
-          <p class="text-xs font-mono uppercase tracking-wider text-slate-500 mb-3">COMPATIBILITÉ CERTIFIÉE SUR LES SÉQUENCEURS MAJEURS :</p>
-          <div class="flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm font-mono text-slate-400">
-            <span class="hover:text-white transition">&bull; FL Studio 21/24</span>
-            <span class="hover:text-white transition">&bull; Ableton Live 11/12</span>
-            <span class="hover:text-white transition">&bull; Apple Logic Pro</span>
-            <span class="hover:text-white transition">&bull; Cockos Reaper</span>
-            <span class="hover:text-white transition">&bull; PreSonus Studio One</span>
-            <span class="hover:text-white transition">&bull; Steinberg Cubase Pro</span>
-            <span class="hover:text-white transition">&bull; Bitwig Studio</span>
-          </div>
-        </div>
-
       </div>
     </section>
   </main>
 
   <!-- ========================================================= -->
-  <!-- 6. FOOTER ÉPURÉ -->
+  <!-- FOOTER MINIMALISTE SUISSE -->
   <!-- ========================================================= -->
-  <footer class="bg-[#090A0C] border-t border-white/5 py-16 text-slate-500 text-xs font-mono">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-        
-        <div class="space-y-3">
-          <div class="flex items-center space-x-2 text-white font-medium text-sm">
-            <span class="w-2 h-2 rounded-full bg-[#38bdf8]"></span>
-            <span>AUDIOFORGE LAB</span>
-          </div>
-          <p class="text-[11px] text-slate-400 leading-relaxed">
-            La plateforme d'accélération pour créateurs audio indépendants, beatmakers et sound designers souhaitant monétiser leurs propres plugins VST/AU.
-          </p>
-          <div class="text-[10px] text-slate-600">
-            VST is a registered trademark of Steinberg Media Technologies GmbH.
-          </div>
-        </div>
-
-        <div class="space-y-2">
-          <div class="font-medium text-white uppercase tracking-wider text-xs">Formations</div>
-          <ul class="space-y-1.5 text-[11px]">
-            <li><a href="#formations" class="hover:text-white transition">Parcours Low-Code (HISE/RNBO)</a></li>
-            <li><a href="#formations" class="hover:text-white transition">Parcours Vibe Coding (JUCE/C++)</a></li>
-            <li><a href="#formations" class="hover:text-white transition">Bundle Intégral & Templates</a></li>
-            <li><a href="#lead-magnet" class="hover:text-[#f59e0b] transition">Quick Clipper VST3 (Offert)</a></li>
-          </ul>
-        </div>
-
-        <div class="space-y-2">
-          <div class="font-medium text-white uppercase tracking-wider text-xs">Communautés Audio DSP</div>
-          <ul class="space-y-1.5 text-[11px]">
-            <li><a href="https://www.kvraudio.com" target="_blank" rel="noopener" class="hover:text-slate-300 transition">KVR Audio Forum</a></li>
-            <li><a href="https://forum.hise.audio" target="_blank" rel="noopener" class="hover:text-slate-300 transition">HISE Developer Community</a></li>
-            <li><a href="https://forum.juce.com" target="_blank" rel="noopener" class="hover:text-slate-300 transition">JUCE Forum</a></li>
-            <li><a href="https://reddit.com/r/AudioDSP" target="_blank" rel="noopener" class="hover:text-slate-300 transition">Reddit r/AudioDSP</a></li>
-            <li><a href="#" onclick="alert('Lien direct envoyé par email aux membres actifs'); return false;" class="text-slate-400 hover:underline">Discord AudioForge Privé</a></li>
-          </ul>
-        </div>
-
-        <div class="space-y-2">
-          <div class="font-medium text-white uppercase tracking-wider text-xs">Légal &amp; Assistance</div>
-          <ul class="space-y-1.5 text-[11px]">
-            <li><a href="/legal/cgu-cgv.html" class="hover:text-slate-300 transition">Conditions Générales (CGU/CGV)</a></li>
-            <li><a href="/legal/confidentialite.html" class="hover:text-slate-300 transition">Politique de Confidentialité (RGPD)</a></li>
-            <li><a href="/legal/cookies.html" class="hover:text-slate-300 transition">Gestion des Cookies</a></li>
-            <li><a href="/legal/remboursement.html" class="hover:text-slate-300 transition">Remboursement &amp; Rétractation</a></li>
-            <li><a href="mailto:contact@audioforge-lab.io" class="hover:text-[#f59e0b] transition">Support : contact@audioforge-lab.io</a></li>
-          </ul>
-        </div>
-
+  <footer class="bg-[#090A0C] py-12 text-slate-500 text-xs font-mono">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>&copy; 2026 AudioForge Lab SAS &bull; VST3 &bull; AU &bull; JUCE &bull; HISE</div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="/legal/cgu-cgv.html" class="hover:text-white transition">CGU/CGV</a>
+        <a href="/legal/confidentialite.html" class="hover:text-white transition">Confidentialité</a>
+        <a href="/legal/cookies.html" class="hover:text-white transition">Cookies</a>
+        <a href="mailto:contact@audioforge-lab.io" class="hover:text-white transition">Support</a>
       </div>
-
-      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
-        <div>
-          &copy; <span id="year-span">2026</span> AudioForge Lab SAS. Tous droits réservés.
-        </div>
-        <div class="flex items-center space-x-4">
-          <span class="flex items-center gap-1.5 text-slate-400">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#38bdf8]"></span> Hébergement Haute Disponibilité
-          </span>
-          <span class="flex items-center gap-1.5 text-slate-400">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></span> Paiement Sécurisé Lemon Squeezy
-          </span>
-        </div>
-      </div>
-
     </div>
   </footer>
 
-  <!-- ========================================================= -->
-  <!-- MODALS : CHECKOUT SÉCURISÉ & POPUPS LÉGAUX -->
-  <!-- ========================================================= -->
+  <!-- MODALS -->
   <div id="checkout-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="glass-panel max-w-md w-full p-6 sm:p-7 shadow-2xl relative">
+    <div class="glass-panel max-w-md w-full p-6 shadow-2xl relative">
       <button onclick="closeModal('checkout-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white font-mono text-base">&times;</button>
-      
-      <div class="flex items-center gap-2 mb-3">
-        <span class="w-2 h-2 rounded-full bg-[#38bdf8]"></span>
-        <span class="font-mono text-xs text-slate-400">COMMANDE SÉCURISÉE</span>
-      </div>
-
-      <h3 id="modal-product-title" class="text-lg font-semibold text-white mb-1">Nom du produit</h3>
+      <div class="text-xs font-mono text-[#38bdf8] mb-2">COMMANDE SÉCURISÉE</div>
+      <h3 id="modal-product-title" class="text-lg font-semibold text-white mb-1">Produit</h3>
       <div id="modal-product-price" class="text-2xl font-mono font-semibold text-[#f59e0b] mb-4">0 €</div>
 
-      <p class="text-xs text-slate-400 mb-4 font-mono leading-relaxed">
-        Renseigne tes coordonnées pour recevoir immédiatement tes accès aux vidéos et templates :
-      </p>
-
       <form onsubmit="confirmCheckout(event)" class="space-y-3">
-        <div>
-          <label class="block text-[11px] font-mono text-slate-400 mb-1">Ton prénom / Alias de Beatmaker</label>
-          <input type="text" required placeholder="Ex: Alex Beatmaker" class="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white font-mono text-xs focus:border-white/30 focus:outline-none">
-        </div>
-        <div>
-          <label class="block text-[11px] font-mono text-slate-400 mb-1">Ton e-mail</label>
-          <input type="email" required placeholder="alex@studio.com" class="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white font-mono text-xs focus:border-white/30 focus:outline-none">
-        </div>
-
+        <input type="text" required placeholder="Prénom / Alias" class="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white font-mono text-xs focus:outline-none">
+        <input type="email" required placeholder="E-mail" class="w-full px-3.5 py-2.5 rounded-lg bg-white/5 border border-white/10 text-white font-mono text-xs focus:outline-none">
         <div class="p-3 rounded-lg bg-white/[0.03] border border-white/5 flex items-start gap-2">
           <input type="checkbox" id="checkout-consent" required class="mt-0.5 w-4 h-4 rounded bg-white/5 border-white/10 text-[#38bdf8] focus:ring-0 cursor-pointer">
           <label for="checkout-consent" class="text-[10px] font-mono text-slate-400 leading-tight cursor-pointer">
-            En passant commande, j'accepte les <a href="/legal/cgu-cgv.html" target="_blank" class="text-slate-200 underline">CGV</a> et je demande l'accès immédiat au contenu numérique. Je renonce à mon <a href="/legal/remboursement.html" target="_blank" class="text-[#f59e0b] underline">droit de rétractation</a> une fois les accès délivrés.
+            J'accepte les <a href="/legal/cgu-cgv.html" target="_blank" class="underline">CGV</a> et demande l'accès immédiat aux contenus.
           </label>
         </div>
-
-        <button type="submit" class="w-full py-3 rounded-full glass-button-primary font-mono text-xs uppercase tracking-wider mt-2">
-          Valider et accéder aux formations &rarr;
+        <button type="submit" class="w-full py-3 rounded-full glass-button-primary font-mono text-xs uppercase tracking-wider">
+          Accéder aux formations &rarr;
         </button>
       </form>
-
-      <div class="mt-4 text-center text-[10px] font-mono text-slate-500">
-        Paiement SSL 256-bit crypté &bull; Facture avec TVA &bull; Zéro stockage bancaire
-      </div>
     </div>
   </div>
 
   <div id="legal-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="glass-panel max-w-xl w-full p-6 sm:p-7 shadow-2xl relative max-h-[80vh] overflow-y-auto font-mono text-xs">
+    <div class="glass-panel max-w-xl w-full p-6 shadow-2xl relative max-h-[80vh] overflow-y-auto font-mono text-xs">
       <button onclick="closeModal('legal-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-white text-base">&times;</button>
-      <h3 id="legal-title" class="text-base font-semibold text-white mb-3">Informations Légales</h3>
-      <div id="legal-content" class="text-slate-300 space-y-3 leading-relaxed"></div>
+      <h3 id="legal-title" class="text-base font-semibold text-white mb-3">Légal</h3>
+      <div id="legal-content" class="text-slate-300 space-y-3"></div>
     </div>
   </div>
 
-  <!-- ========================================================= -->
-  <!-- JAVASCRIPT: WEB AUDIO API SYNTHESIS, KNOBS & INTERACTIONS -->
-  <!-- ========================================================= -->
+  <!-- JAVASCRIPT: WEB AUDIO API & INTERACTIONS -->
   <script>
-    // État du moteur Web Audio
-    let audioCtx = null;
-    let isPlaying = false;
-    let loopInterval = null;
-    let isClippedMode = true; // true = Après (Clipper actif), false = Avant (Bypass)
+    let audioCtx = null, isPlaying = false, loopInterval = null, isClippedMode = true;
+    let driveGain = 2.1, ceilingThreshold = 0.85;
+    let masterGain = null, waveShaperNode = null, bypassGainNode = null, wetGainNode = null, analyserNode = null;
 
-    let driveGain = 2.1;
-    let ceilingThreshold = 0.85;
-
-    // Nœuds DSP Web Audio
-    let masterGain = null;
-    let waveShaperNode = null;
-    let bypassGainNode = null;
-    let wetGainNode = null;
-    let analyserNode = null;
-
-    // Oscilloscope Canvas
     const canvas = document.getElementById('scopeCanvas');
     const ctx = canvas.getContext('2d');
-
-    // Canvas de l'oscilloscope haute résolution (support Retina)
     let dpr = window.devicePixelRatio || 1;
+
     function resizeCanvas() {
       if (!canvas) return;
       dpr = window.devicePixelRatio || 1;
@@ -977,27 +400,20 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // Algorithme de Soft-Clipping (Courbe Hyperbolique Tangente)
     function makeDistortionCurve(amount) {
-      const n_samples = 44100;
-      const curve = new Float32Array(n_samples);
-      for (let i = 0; i < n_samples; ++i) {
-        const x = (i * 2) / n_samples - 1;
+      const n = 44100, curve = new Float32Array(n);
+      for (let i = 0; i < n; ++i) {
+        const x = (i * 2) / n - 1;
         curve[i] = Math.tanh(x * (1 + amount * 0.45));
       }
       return curve;
     }
 
-    // Initialisation du Web Audio au premier clic
     function initAudio() {
       if (audioCtx) return;
-
-      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      audioCtx = new AudioContextClass();
-
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
       analyserNode = audioCtx.createAnalyser();
       analyserNode.fftSize = 1024;
-
       masterGain = audioCtx.createGain();
       masterGain.gain.setValueAtTime(0.7, audioCtx.currentTime);
 
@@ -1007,7 +423,6 @@
 
       wetGainNode = audioCtx.createGain();
       bypassGainNode = audioCtx.createGain();
-
       updateAudioRouting();
 
       waveShaperNode.connect(wetGainNode);
@@ -1015,7 +430,6 @@
       bypassGainNode.connect(analyserNode);
       analyserNode.connect(masterGain);
       masterGain.connect(audioCtx.destination);
-
       drawOscilloscope();
     }
 
@@ -1035,21 +449,15 @@
       }
     }
 
-    // Synthétiseur d'une pulsation 808 percutante
     function triggerDrumHit() {
       if (!audioCtx || !isPlaying) return;
-
       const now = audioCtx.currentTime;
       const osc = audioCtx.createOscillator();
       const oscGain = audioCtx.createGain();
-
       osc.type = 'sine';
-      
-      // Chute de hauteur (Transient de Kick vers 45Hz sub)
       osc.frequency.setValueAtTime(160, now);
       osc.frequency.exponentialRampToValueAtTime(45, now + 0.08);
 
-      // Enveloppe d'amplitude
       oscGain.gain.setValueAtTime(1.0, now);
       oscGain.gain.exponentialRampToValueAtTime(0.7, now + 0.15);
       oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.95);
@@ -1059,26 +467,20 @@
 
       osc.connect(oscGain);
       oscGain.connect(preGain);
-
       preGain.connect(waveShaperNode);
       oscGain.connect(bypassGainNode);
-
       osc.start(now);
       osc.stop(now + 1.0);
     }
 
-    // Rendu en continu de l'oscilloscope
     function drawOscilloscope() {
       requestAnimationFrame(drawOscilloscope);
       if (!canvas || !ctx) return;
-      const width = canvas.width / dpr;
-      const height = canvas.height / dpr;
-
+      const width = canvas.width / dpr, height = canvas.height / dpr;
       ctx.save();
       ctx.scale(dpr, dpr);
       ctx.clearRect(0, 0, width, height);
 
-      // Ligne centrale
       ctx.lineWidth = 1;
       ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
       ctx.beginPath();
@@ -1087,7 +489,6 @@
       ctx.stroke();
 
       if (!analyserNode || !isPlaying) {
-        // Onde de veille sobre
         const time = Date.now() * 0.004;
         ctx.lineWidth = 1.5;
         ctx.strokeStyle = isClippedMode ? '#38bdf8' : '#94a3b8';
@@ -1099,7 +500,6 @@
         }
         ctx.stroke();
         ctx.restore();
-
         const peakEl = document.getElementById('peak-val');
         if (peakEl && !isPlaying) peakEl.innerText = '-inf dBFS';
         return;
@@ -1109,7 +509,6 @@
       const dataArray = new Uint8Array(bufferLength);
       analyserNode.getByteTimeDomainData(dataArray);
 
-      // Mesure dynamique de crête
       let maxVal = 0;
       for (let i = 0; i < bufferLength; i++) {
         const diff = Math.abs(dataArray[i] - 128) / 128;
@@ -1117,25 +516,17 @@
       }
       const peakValEl = document.getElementById('peak-val');
       if (peakValEl) {
-        if (maxVal > 0.01) {
-          const db = Math.min(0, 20 * Math.log10(maxVal));
-          peakValEl.innerText = `${db.toFixed(1)} dBFS`;
-        } else {
-          peakValEl.innerText = '-inf dBFS';
-        }
+        peakValEl.innerText = maxVal > 0.01 ? `${Math.min(0, 20 * Math.log10(maxVal)).toFixed(1)} dBFS` : '-inf dBFS';
       }
 
       ctx.lineWidth = isClippedMode ? 2 : 1.5;
       ctx.strokeStyle = isClippedMode ? '#38bdf8' : '#94a3b8';
-
       ctx.beginPath();
       const sliceWidth = (width * 1.0) / bufferLength;
       let x = 0;
-
       for (let i = 0; i < bufferLength; i++) {
         const v = dataArray[i] / 128.0;
         const y = (v * height) / 2;
-
         if (i === 0) ctx.moveTo(x, y);
         else ctx.lineTo(x, y);
         x += sliceWidth;
@@ -1144,23 +535,18 @@
       ctx.restore();
     }
 
-    // Bouton de lecture Démo
     const playBtn = document.getElementById('audio-play-btn');
     const playIcon = document.getElementById('play-icon');
     const playText = document.getElementById('play-text');
 
     playBtn.addEventListener('click', async () => {
       initAudio();
-      if (audioCtx.state === 'suspended') {
-        await audioCtx.resume();
-      }
-
+      if (audioCtx.state === 'suspended') await audioCtx.resume();
       if (!isPlaying) {
         isPlaying = true;
         playIcon.innerHTML = '&#9632;';
-        playText.innerText = 'Arrêter la démo';
+        playText.innerText = 'Arrêter';
         playBtn.classList.add('border-white/30', 'bg-white/10');
-
         triggerDrumHit();
         loopInterval = setInterval(triggerDrumHit, 1100);
       } else {
@@ -1172,7 +558,6 @@
       }
     });
 
-    // Gestion du sélecteur Avant / Après
     const btnAvant = document.getElementById('btn-avant');
     const btnApres = document.getElementById('btn-apres');
     const processingBadge = document.getElementById('processing-badge');
@@ -1187,16 +572,14 @@
       } else {
         btnAvant.className = 'px-3 py-1 rounded-full text-xs font-mono transition bg-white/15 text-white font-medium shadow-sm border border-white/20';
         btnApres.className = 'px-3 py-1 rounded-full text-xs font-mono transition text-slate-400 hover:text-white';
-        processingBadge.innerText = 'BYPASS (SIGNAL BRUT)';
+        processingBadge.innerText = 'BYPASS';
         processingBadge.className = 'px-1.5 py-0.2 rounded bg-white/5 text-slate-400 border border-white/10 text-[9px]';
       }
       updateAudioRouting();
     }
-
     btnAvant.addEventListener('click', () => setABMode(false));
     btnApres.addEventListener('click', () => setABMode(true));
 
-    // Curseur et potentiomètre DRIVE
     const driveSlider = document.getElementById('drive-slider');
     const driveVal = document.getElementById('drive-val');
     const driveIndicator = document.getElementById('drive-indicator');
@@ -1205,19 +588,12 @@
     driveSlider.addEventListener('input', (e) => {
       const val = parseFloat(e.target.value);
       driveVal.innerText = `+${val.toFixed(1)} dB`;
-      
-      const rot = -120 + (val / 18) * 240;
-      driveIndicator.style.transform = `rotate(${rot}deg)`;
-      
+      driveIndicator.style.transform = `rotate(${-120 + (val / 18) * 240}deg)`;
       driveGain = 1.0 + (val / 3.5);
       clipRatio.innerText = `${(1 + val * 0.35).toFixed(1)}:1`;
-
-      if (waveShaperNode) {
-        waveShaperNode.curve = makeDistortionCurve(driveGain * 4);
-      }
+      if (waveShaperNode) waveShaperNode.curve = makeDistortionCurve(driveGain * 4);
     });
 
-    // Curseur et potentiomètre CEILING
     const ceilingSlider = document.getElementById('ceiling-slider');
     const ceilingVal = document.getElementById('ceiling-val');
     const ceilingLabel = document.getElementById('ceiling-label');
@@ -1227,165 +603,79 @@
       const val = parseFloat(e.target.value);
       ceilingVal.innerText = `${val.toFixed(1)} dBFS`;
       ceilingLabel.innerText = `${val.toFixed(1)} dB`;
-
-      const rot = -120 + ((val + 12) / 12) * 240;
-      ceilingIndicator.style.transform = `rotate(${rot}deg)`;
-
+      ceilingIndicator.style.transform = `rotate(${-120 + ((val + 12) / 12) * 240}deg)`;
       ceilingThreshold = Math.pow(10, val / 20);
       updateAudioRouting();
     });
 
-    // Glisser-déposer tactile/souris directement sur les potentiomètres
     function makeKnobDraggable(knobId, sliderEl) {
       const knob = document.getElementById(knobId);
       if (!knob) return;
-      let isDragging = false;
-      let startY = 0;
-      let startVal = 0;
-
-      knob.style.touchAction = 'none';
-      knob.style.userSelect = 'none';
-
+      let isDragging = false, startY = 0, startVal = 0;
       knob.addEventListener('pointerdown', (e) => {
         isDragging = true;
         startY = e.clientY;
         startVal = parseFloat(sliderEl.value);
         knob.setPointerCapture(e.pointerId);
       });
-
       knob.addEventListener('pointermove', (e) => {
         if (!isDragging) return;
-        const deltaY = startY - e.clientY;
         const range = parseFloat(sliderEl.max) - parseFloat(sliderEl.min);
         const step = parseFloat(sliderEl.step) || 0.1;
-        const change = (deltaY / 120) * range;
-        let newVal = Math.min(parseFloat(sliderEl.max), Math.max(parseFloat(sliderEl.min), startVal + change));
-        newVal = Math.round(newVal / step) * step;
-        sliderEl.value = newVal;
+        let newVal = Math.min(parseFloat(sliderEl.max), Math.max(parseFloat(sliderEl.min), startVal + ((startY - e.clientY) / 120) * range));
+        sliderEl.value = Math.round(newVal / step) * step;
         sliderEl.dispatchEvent(new Event('input'));
       });
-
-      const stopDrag = (e) => {
-        if (isDragging) {
-          isDragging = false;
-          try { knob.releasePointerCapture(e.pointerId); } catch(err) {}
-        }
-      };
-      knob.addEventListener('pointerup', stopDrag);
-      knob.addEventListener('pointercancel', stopDrag);
+      const stop = (e) => { if (isDragging) { isDragging = false; try { knob.releasePointerCapture(e.pointerId); } catch(err){} } };
+      knob.addEventListener('pointerup', stop);
+      knob.addEventListener('pointercancel', stop);
     }
-
     makeKnobDraggable('drive-knob', driveSlider);
     makeKnobDraggable('ceiling-knob', ceilingSlider);
 
-    // Clics sur les potentiomètres
-    document.getElementById('drive-knob').addEventListener('click', (e) => {
-      let cur = parseFloat(driveSlider.value);
-      cur = cur >= 16 ? 2 : cur + 3;
-      driveSlider.value = cur;
-      driveSlider.dispatchEvent(new Event('input'));
-    });
-
-    document.getElementById('ceiling-knob').addEventListener('click', (e) => {
-      let cur = parseFloat(ceilingSlider.value);
-      cur = cur <= -10 ? -0.5 : cur - 2.5;
-      ceilingSlider.value = cur;
-      ceilingSlider.dispatchEvent(new Event('input'));
-    });
-
-    // Formulaire Lead Magnet
+    // Lead capture
     const leadForm = document.getElementById('lead-form');
-    const leadEmail = document.getElementById('lead-email');
-    const leadBtn = document.getElementById('lead-btn');
-    const leadSuccess = document.getElementById('lead-success');
-
     leadForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const email = leadEmail.value.trim();
+      const email = document.getElementById('lead-email').value.trim();
       if (!email) return;
-
-      leadBtn.disabled = true;
-      leadBtn.innerHTML = 'Préparation...';
-
+      document.getElementById('lead-btn').disabled = true;
+      document.getElementById('lead-btn').innerHTML = 'Envoi...';
       setTimeout(() => {
         leadForm.classList.add('hidden');
-        leadSuccess.classList.remove('hidden');
-        
-        const blob = new Blob([
-          `// Quick Clipper VST3 - AudioForge Lab\n// Dépôt et binaires prêts pour : ${email}\n\n1. Ouvre le dossier /Source dans VS Code ou Projucer.\n2. Exécute "cmake -B build" pour compiler ton VST3.\n3. Suis le parcours sur AudioForge Lab.`
-        ], { type: 'text/plain;charset=utf-8' });
-        const downloadUrl = URL.createObjectURL(blob);
+        document.getElementById('lead-success').classList.remove('hidden');
+        const blob = new Blob([`// Quick Clipper VST3 - AudioForge Lab\n// Code source pour : ${email}\n\n1. cmake -B build\n2. cmake --build build --config Release`], { type: 'text/plain;charset=utf-8' });
         const a = document.createElement('a');
-        a.href = downloadUrl;
+        a.href = URL.createObjectURL(blob);
         a.download = 'QuickClipper_SourceKit.txt';
         document.body.appendChild(a);
         a.click();
-        document.body.removeChild(a);
-      }, 700);
+        a.remove();
+      }, 500);
     });
 
-    // Modal de Commande
     function handleCheckout(tierId, title, price) {
       document.getElementById('modal-product-title').innerText = title;
       document.getElementById('modal-product-price').innerText = `${price} €`;
       document.getElementById('checkout-modal').classList.remove('hidden');
       document.getElementById('checkout-modal').classList.add('flex');
     }
-
     function confirmCheckout(e) {
       e.preventDefault();
-      alert('Paiement validé avec succès. Redirection vers votre Espace Apprenant AudioForge...');
+      alert('Paiement validé. Redirection vers votre Espace Membre...');
       closeModal('checkout-modal');
       window.location.href = '/dashboard.html?token=VIBE-PRO-DEMO-2025';
     }
-
     function closeModal(id) {
       const el = document.getElementById(id);
       el.classList.add('hidden');
       el.classList.remove('flex');
     }
 
-    // Modal Légal
-    function openLegalModal(type) {
-      const modal = document.getElementById('legal-modal');
-      const title = document.getElementById('legal-title');
-      const content = document.getElementById('legal-content');
-
-      if (type === 'mentions') {
-        title.innerText = 'Mentions Légales';
-        content.innerHTML = `
-          <p><strong>Éditeur :</strong> AudioForge Lab SAS - Plateforme d'apprentissage et de distribution logicielle audio numérique.</p>
-          <p><strong>Siège social :</strong> 10 rue de la Paix, 75002 Paris, France.</p>
-          <p><strong>Hébergement :</strong> Cloudflare & Vercel Global Edge Network.</p>
-          <p><strong>Propriété des marques :</strong> VST est une marque déposée de Steinberg Media Technologies GmbH. Logic Pro et Audio Units (AU) sont des marques déposées d'Apple Inc.</p>
-        `;
-      } else if (type === 'cgv') {
-        title.innerText = 'Conditions Générales de Vente (CGV)';
-        content.innerHTML = `
-          <p><strong>1. Objet :</strong> Accès aux formations en ligne, bibliothèques de code source et templates CMake/JUCE/HISE.</p>
-          <p><strong>2. Livraison :</strong> Accès immédiat dès validation du paiement.</p>
-          <p><strong>3. Rétractation :</strong> Garantie satisfait ou remboursé sous 14 jours sur simple demande par email.</p>
-          <p><strong>4. Droits sur le code :</strong> Les templates et projets sources sont utilisables pour commercialiser vos propres plugins sans redevances.</p>
-        `;
-      } else {
-        title.innerText = 'Politique de Confidentialité';
-        content.innerHTML = `
-          <p><strong>Protection des données :</strong> Conformité intégrale avec le RGPD. Votre adresse e-mail n'est jamais transmise à des tiers.</p>
-          <p><strong>Désinscription :</strong> Possible à tout moment en un clic en bas de chaque email.</p>
-        `;
-      }
-
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-    }
-
-    // Initialisation
-    document.getElementById('year-span').innerText = new Date().getFullYear();
     driveSlider.dispatchEvent(new Event('input'));
     ceilingSlider.dispatchEvent(new Event('input'));
     drawOscilloscope();
   </script>
-  <!-- Bandeau de consentement RGPD (Vanilla JS) -->
   <script src="/js/cookie-banner.js"></script>
 </body>
 </html>
